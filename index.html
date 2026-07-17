@@ -9,15 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #050505;
-            --bg-card: #0f0f0f;
-            --bg-card-hover: #161616;
-            --border-color: #1f1f1f;
-            --border-hover: #333333;
-            --text-primary: #ffffff;
-            --text-secondary: #888888;
-            --accent: #00ff9d;
-            --accent-dim: rgba(0, 255, 157, 0.1);
+            /* Premium Deep Navy Palette */
+            --bg-main: #020617;       /* Very dark navy */
+            --bg-card: #0f172a;       /* Slate 900 */
+            --bg-card-hover: #1e293b; /* Slate 800 */
+            --border-color: #1e293b;
+            --border-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            
+            /* Dynamic Accent Gradient Colors */
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-glow: rgba(6, 182, 212, 0.15);
+            
             --font-heading: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', sans-serif;
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -38,92 +43,122 @@
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.1; }
-        .text-accent { color: var(--accent); }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+        .text-accent { 
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
         .text-muted { color: var(--text-secondary); }
-        .section-padding { padding: 8rem 0; }
+        .section-padding { padding: 7rem 0; }
 
+        /* DYNAMIC BUTTONS */
         .btn {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 1rem 2rem; border-radius: 100px;
-            font-weight: 500; font-size: 1rem; cursor: pointer;
+            padding: 1rem 2.2rem; border-radius: 100px;
+            font-weight: 600; font-size: 1rem; cursor: pointer;
             border: none; transition: var(--transition);
+            position: relative; overflow: hidden;
         }
-        .btn-primary { background: var(--text-primary); color: var(--bg-main); }
-        .btn-primary:hover { background: var(--accent); transform: scale(1.02); }
-        .btn-outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); }
-        .btn-outline:hover { border-color: var(--text-primary); background: var(--bg-card); }
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); 
+            color: white;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+        .btn-primary:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+        }
 
         /* NAVIGATION */
         .nav {
             position: fixed; top: 0; width: 100%; z-index: 100;
-            padding: 1.5rem 0; background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
+            padding: 1.2rem 0; background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color);
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-links a { font-size: 0.95rem; color: var(--text-secondary); }
-        .nav-links a:hover { color: var(--text-primary); }
+        .logo { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; }
+        .nav-links a:hover { color: var(--accent-cyan); }
 
         /* LANGUAGE SWITCHER */
         .lang-switcher {
-            display: flex; gap: 0.5rem; padding: 0.3rem;
+            display: flex; gap: 0.3rem; padding: 0.25rem;
             background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 100px;
         }
         .lang-btn {
-            padding: 0.4rem 0.8rem; border-radius: 100px; font-size: 0.85rem; font-weight: 500;
+            padding: 0.4rem 0.7rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600;
             cursor: pointer; background: transparent; color: var(--text-secondary);
             border: none; transition: var(--transition);
         }
-        .lang-btn.active { background: var(--accent); color: var(--bg-main); }
-        .lang-btn:hover:not(.active) { color: var(--text-primary); }
+        .lang-btn.active { background: var(--accent-cyan); color: var(--bg-main); }
 
-        /* HERO */
+        /* HERO WITH DYNAMIC GLOW */
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             position: relative; padding-top: 100px; overflow: hidden;
         }
         .hero-glow {
-            position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(0, 255, 157, 0.08) 0%, transparent 70%);
-            filter: blur(60px); z-index: -1;
+            position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            filter: blur(80px); z-index: -1;
+            animation: pulseGlow 6s ease-in-out infinite alternate;
         }
-        .hero-content { max-width: 900px; }
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .hero-content { max-width: 800px; }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.5rem 1rem; background: var(--bg-card);
             border: 1px solid var(--border-color); border-radius: 100px;
-            font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem;
+            font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 2rem;
+            font-weight: 500;
         }
-        .hero-badge .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
-        .hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); letter-spacing: -0.03em; margin-bottom: 2rem; }
-        .hero h1 span { display: block; color: var(--accent); }
-        .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; }
-        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 550px; }
 
-        /* SERVICES */
+        /* SERVICES GRID WITH HOVER EFFECTS */
         .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem; margin-top: 4rem;
         }
         .service-card {
             background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 16px; padding: 2.5rem; transition: var(--transition);
+            border-radius: 20px; padding: 2.5rem; transition: var(--transition);
+            position: relative; overflow: hidden;
         }
-        .service-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-5px); }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            transform: scaleX(0); transform-origin: left; transition: var(--transition);
+        }
+        .service-card:hover { 
+            border-color: var(--accent-cyan); 
+            background: var(--bg-card-hover); 
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        
         .service-icon {
-            width: 60px; height: 60px; background: var(--accent-dim);
-            border-radius: 12px; display: flex; align-items: center;
-            justify-content: center; font-size: 1.8rem; margin-bottom: 1.5rem;
+            width: 56px; height: 56px; 
+            background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.1));
+            border-radius: 16px; display: flex; align-items: center;
+            justify-content: center; font-size: 1.6rem; margin-bottom: 1.5rem;
+            border: 1px solid rgba(6,182,212,0.2);
         }
-        .service-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
-        .service-card p { color: var(--text-secondary); line-height: 1.7; }
+        .service-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+        .service-card p { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
 
-        /* CONTACT */
+        /* CONTACT SECTION */
         .contact-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem;
         }
@@ -132,32 +167,36 @@
         .contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
         .contact-item { display: flex; align-items: center; gap: 1rem; }
         .contact-icon {
-            width: 45px; height: 45px; background: var(--accent-dim);
-            border-radius: 10px; display: flex; align-items: center;
+            width: 48px; height: 48px; 
+            background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.1));
+            border-radius: 12px; display: flex; align-items: center;
             justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+            border: 1px solid rgba(6,182,212,0.2);
         }
-        .contact-item-text h4 { font-weight: 600; margin-bottom: 0.2rem; }
+        .contact-item-text h4 { font-weight: 600; margin-bottom: 0.2rem; font-size: 0.95rem; }
         .contact-item-text p { color: var(--text-secondary); font-size: 0.95rem; }
 
         .contact-form {
             background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 16px; padding: 2.5rem;
+            border-radius: 20px; padding: 2.5rem;
         }
         .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--text-primary); }
         .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 1rem; background: var(--bg-main);
-            border: 1px solid var(--border-color); border-radius: 8px;
+            width: 100%; padding: 1rem 1.2rem; background: var(--bg-main);
+            border: 1px solid var(--border-color); border-radius: 12px;
             font-family: inherit; font-size: 1rem; color: var(--text-primary); transition: var(--transition);
         }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--accent); }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { 
+            outline: none; border-color: var(--accent-cyan); 
+            box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
+        }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
         /* FOOTER */
-        .footer { background: var(--bg-card); border-top: 1px solid var(--border-color); padding: 4rem 0 2rem; }
+        .footer { background: var(--bg-card); border-top: 1px solid var(--border-color); padding: 3rem 0 2rem; }
         .footer-bottom {
-            border-top: 1px solid var(--border-color); padding-top: 2rem;
             display: flex; justify-content: space-between; align-items: center;
             flex-wrap: wrap; gap: 1rem; color: var(--text-secondary); font-size: 0.9rem;
         }
@@ -168,8 +207,9 @@
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero h1 { font-size: 3rem; }
+            .hero h1 { font-size: 2.8rem; }
             .form-row { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -180,7 +220,7 @@
         <div class="container nav-inner">
             <a href="#home" class="logo">Hovik<span class="text-accent">Mkrtchyan</span></a>
             <ul class="nav-links">
-                <li><a href="#home" data-i18n="nav_home">Գլխավոր</a></li>
+                <li><a href="#home" data-i18n="nav_home">լխավոր</a></li>
                 <li><a href="#services" data-i18n="nav_services">Ծառայություններ</a></li>
                 <li><a href="#contact" data-i18n="nav_contact">Կապ</a></li>
                 <li>
@@ -199,7 +239,7 @@
         <div class="hero-glow"></div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge"><span class="dot"></span><span data-i18n="hero_badge">Shopify & Web Developer</span></div>
+                <div class="hero-badge"><span data-i18n="hero_badge">Shopify & Web Developer</span></div>
                 <h1>
                     <span data-i18n="hero_title_1">Ստեղծում եմ</span>
                     <span class="text-accent" data-i18n="hero_title_2">վաճառող</span>
@@ -216,8 +256,8 @@
     <!-- SERVICES -->
     <section class="section-padding" id="services">
         <div class="container">
-            <h2 style="font-size: 3rem; margin-bottom: 1rem;" data-i18n="services_title">Իմ Ծառայությունները</h2>
-            <p class="text-muted" style="font-size: 1.2rem;" data-i18n="services_subtitle">Լիարժեք լուծումներ Ձեր բիզնեսի թվային աճի համար</p>
+            <h2 style="font-size: 2.8rem; margin-bottom: 1rem;" data-i18n="services_title">Իմ Ծառայությունները</h2>
+            <p class="text-muted" style="font-size: 1.15rem;" data-i18n="services_subtitle">իարժեք լուծումներ Ձեր բիզնեսի թվային աճի համար</p>
             
             <div class="services-grid">
                 <div class="service-card">
@@ -231,13 +271,13 @@
                     <p data-i18n="service_2_desc">Արագ, անվտանգ և անվար հոսթինգով ստատիկ կայքերի պատրաստում GitHub Pages-ի վրա։</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">📦</div>
+                    <div class="service-icon"></div>
                     <h3 data-i18n="service_3_title">Product Listing</h3>
                     <p data-i18n="service_3_desc">Ապրանքների ճիշտ և SEO-օպտիմիզացված տեղադրում՝ նկարներ, նկարագրություններ և tags։</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔄</div>
-                    <h3 data-i18n="service_4_title">Shopify Կայքերի երափոխում</h3>
+                    <div class="service-icon"></div>
+                    <h3 data-i18n="service_4_title">Shopify այքերի Վերափոխում</h3>
                     <p data-i18n="service_4_desc">Պատրաստի կայքերի դիզայնի և ֆունկցիոնալության բարելավում՝ conversion rate-ի բարձրացման համար։</p>
                 </div>
             </div>
@@ -247,12 +287,12 @@
     <!-- CONTACT -->
     <section class="section-padding" id="contact" style="background: var(--bg-card);">
         <div class="container">
-            <h2 style="font-size: 3rem; margin-bottom: 1rem;" data-i18n="contact_title">Կապ Մեզ Հետ</h2>
-            <p class="text-muted" style="font-size: 1.2rem;" data-i18n="contact_subtitle">րացրեք ձևը կամ կապվեք ուղղակիորեն</p>
+            <h2 style="font-size: 2.8rem; margin-bottom: 1rem;" data-i18n="contact_title">ապ Մեզ Հետ</h2>
+            <p class="text-muted" style="font-size: 1.15rem;" data-i18n="contact_subtitle">Լրացրեք ձևը կամ կապվեք ուղղակիորեն</p>
             
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3 data-i18n="contact_heading">Եկեք քննարկենք Ձեր նախագիծը</h3>
+                    <h3 data-i18n="contact_heading">Եկեք քննարկենք եր նախագիծը</h3>
                     <p data-i18n="contact_desc">Ունե՞ք հարցեր կամ պատրա՞ստ եք սկսել։ Պատրաստ եմ օգնել Ձեզ յուրաքանչյուր քայլում։</p>
                     <div class="contact-details">
                         <div class="contact-item">
@@ -303,7 +343,7 @@
                             <option value="shopify" data-i18n="service_1_title">Shopify Ամբողջական Ծառայություններ</option>
                             <option value="static" data-i18n="service_2_title">GitHub Static Կայքեր</option>
                             <option value="listing" data-i18n="service_3_title">Product Listing</option>
-                            <option value="revamp" data-i18n="service_4_title">Shopify Կայքերի երափոխում</option>
+                            <option value="revamp" data-i18n="service_4_title">Shopify Կայքերի Վերափոխում</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -329,21 +369,21 @@
     <script>
         const translations = {
             hy: {
-                nav_home: "Գլխավոր", nav_services: "Ծառայություններ", nav_contact: "Կապ",
+                nav_home: "Գլխավոր", nav_services: "առայություններ", nav_contact: "ապ",
                 hero_badge: "Shopify & Web Developer",
-                hero_title_1: "տեղծում եմ", hero_title_2: "վաճառող", hero_title_3: "առցանց խանութներ",
+                hero_title_1: "Ստեղծում եմ", hero_title_2: "վաճառող", hero_title_3: "առցանց խանութներ",
                 hero_subtitle: "Պրոֆեսիոնալ Shopify ծառայություններ և ստատիկ կայքերի մշակում։ Անհատական մոտեցում և որակյալ արդյունք։",
-                hero_cta_primary: "Կապվել ին հետ",
-                services_title: "մ Ծառայությունները", services_subtitle: "Լիարժեք լուծումներ Ձեր բիզնեսի թվային աճի համար",
+                hero_cta_primary: "Կապվել ինձ հետ",
+                services_title: "Իմ Ծառայությունները", services_subtitle: "Լիարժեք լուծումներ Ձեր բիզնեսի թվային աճի համար",
                 service_1_title: "Shopify Ամբողջական Ծառայություններ", service_1_desc: "Խանութի ստեղծումից մինչև վերջնական գործարկում։ Theme, apps, payment և shipping settings։",
                 service_2_title: "GitHub Static Կայքեր", service_2_desc: "Արագ, անվտանգ և անվճար հոսթինգով ստատիկ կայքերի պատրաստում GitHub Pages-ի վրա։",
                 service_3_title: "Product Listing", service_3_desc: "Ապրանքների ճիշտ և SEO-օպտիմիզացված տեղադրում՝ նկարներ, նկարագրություններ և tags։",
-                service_4_title: "Shopify Կայքերի Վերափոխում", service_4_desc: "Պատրաստի կայքերի դիզայնի և ֆունկցիոնալության բարելավում՝ conversion rate-ի բարձրացման համար։",
-                contact_title: "ապ Մեզ Հետ", contact_subtitle: "Լրացրեք ձևը կամ կապվեք ուղղակիորեն",
+                service_4_title: "Shopify Կայքերի Վերաոխում", service_4_desc: "ատրաստի կայքերի դիզայնի և ֆունկցիոնալության բարելավում՝ conversion rate-ի բարձրացման համար։",
+                contact_title: "Կապ Մեզ Հետ", contact_subtitle: "Լրացրեք ևը կամ կապվեք ուղղակիորեն",
                 contact_heading: "Եկեք քննարկենք Ձեր նախագիծը", contact_desc: "Ունե՞ք հարցեր կամ պատրա՞ստ եք սկսել։ Պատրաստ եմ օգնել Ձեզ յուրաքանչյուր քայլում։",
                 name_label: "Անուն Ազգանուն", phone_label: "Հեռախոս", address_label: "Հասցե", address_value: "ՀՀ, Երևան",
-                form_name: "Անուն *", form_service: "Ծառայություն", form_select: "Ընտրեք ծառայությունը",
-                form_message: "Հաղորդագրություն *", form_submit: "ւղարկել Հաղորդագրությունը",
+                form_name: "Անուն *", form_service: "Ծառայություն", form_select: "Ընտրեք առայությունը",
+                form_message: "Հաղորդագրություն *", form_submit: "Ուղարկել Հաղորդագրությունը",
                 footer_rights: "Բոլոր իրավունքները պաշտպանված են։", footer_made: "Ստեղծված է ❤️-ով Հայաստանում"
             },
             en: {
