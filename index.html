@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hy">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,6 +53,8 @@
         .info-item { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); }
         .info-label { color: var(--gray); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
         .info-value { color: var(--light); font-size: 16px; font-weight: 600; }
+        .info-value a { color: var(--light); text-decoration: none; transition: color 0.3s; }
+        .info-value a:hover { color: var(--primary); }
 
         .services-grid, .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s; }
@@ -73,6 +75,9 @@
         .contact-details { display: flex; flex-direction: column; gap: 15px; margin: 30px 0; font-size: 18px; }
         .contact-item { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--light); }
         .contact-item span { color: var(--primary); }
+        .contact-item a { color: var(--light); text-decoration: none; transition: color 0.3s; }
+        .contact-item a:hover { color: var(--primary); }
+        
         .social-links { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
         .social-link { background: rgba(255, 255, 255, 0.05); color: var(--light); padding: 12px 25px; border-radius: 50px; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; }
         .social-link:hover { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-color: transparent; transform: translateY(-3px); }
@@ -99,27 +104,27 @@
     <header>
         <div class="logo">Hovik Mkrtchyan</div>
         <nav>
-            <a href="#home" data-lang-key="home">Գլխավոր</a>
-            <a href="#about" data-lang-key="about">Իմ մասին</a>
-            <a href="#services" data-lang-key="services">Ծառայություններ</a>
-            <a href="#projects" data-lang-key="projects">Նախագծեր</a>
-            <a href="#contact" data-lang-key="contact">Կապ</a>
+            <a href="#home" data-lang-key="home">Home</a>
+            <a href="#about" data-lang-key="about">About</a>
+            <a href="#services" data-lang-key="services">Services</a>
+            <a href="#projects" data-lang-key="projects">Projects</a>
+            <a href="#contact" data-lang-key="contact">Contact</a>
             <div class="lang-switch">
-                <button class="lang-btn active" onclick="setLang('hy')">HY</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" onclick="setLang('ru')">RU</button>
+                <button class="lang-btn" data-lang="hy" onclick="setLang('hy')">HY</button>
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
             </div>
         </nav>
     </header>
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="subtitle" data-lang-key="hero_subtitle">SHOPIFY ՄՇԱԿՈՂ</div>
-            <h1 data-lang-key="hero_title">Հովիկ Մկրտչյան</h1>
-            <p data-lang-key="hero_desc">Ստեղծում եմ ժամանակակից, արագ և վաճառքը խթանող խանութներ Shopify-ի միջոցով։ Քո բիզնեսի թվային հաջողության գրավականը։</p>
+            <div class="subtitle" data-lang-key="hero_subtitle">SHOPIFY DEVELOPER</div>
+            <h1 data-lang-key="hero_title">Hovik Mkrtchyan</h1>
+            <p data-lang-key="hero_desc">I build modern, fast, and high-converting stores on Shopify. The key to your business's digital success.</p>
             <div>
-                <a href="#projects" class="btn btn-primary" data-lang-key="btn_works">Դիտել Իմ Աշխատանքը</a>
-                <a href="#contact" class="btn btn-secondary" data-lang-key="btn_contact">Կապնվել Ինձ Հետ</a>
+                <a href="#projects" class="btn btn-primary" data-lang-key="btn_works">View My Work</a>
+                <a href="#contact" class="btn btn-secondary" data-lang-key="btn_contact">Contact Me</a>
             </div>
         </div>
     </section>
@@ -127,13 +132,13 @@
     <section class="section" id="about">
         <div class="about-content">
             <div class="about-text fade-in">
-                <h2 class="section-title" style="text-align: left; margin-bottom: 20px;" data-lang-key="about_title">Իմ մասին</h2>
-                <p data-lang-key="about_p1">Ես պրոֆեսիոնալ Shopify մշակող եմ Երևանից։ Իմ նպատակն է օգնել բիզնեսներին հասնել առավելագույն արդյունքների առցանց առևտրի ոլորտում՝ առաջարկելով ինչպես ստանդարտ, այնպես էլ լիովին անհատականացված լուծումներ։</p>
+                <h2 class="section-title" style="text-align: left; margin-bottom: 20px;" data-lang-key="about_title">About Me</h2>
+                <p data-lang-key="about_p1">I am a professional Shopify developer from Yerevan. My goal is to help businesses achieve maximum results in e-commerce by offering both standard and fully custom solutions.</p>
                 <div class="info-grid">
-                    <div class="info-item"><div class="info-label" data-lang-key="age">Տարիք</div><div class="info-value" data-lang-key="age_val">26 տարեկան</div></div>
-                    <div class="info-item"><div class="info-label" data-lang-key="loc">Գտնվելու վայր</div><div class="info-value" data-lang-key="loc_val">Երևան, Հայաստան</div></div>
-                    <div class="info-item"><div class="info-label" data-lang-key="phone">Հեռախոս</div><div class="info-value">+374 93 04 12 17</div></div>
-                    <div class="info-item"><div class="info-label" data-lang-key="email">Էլ. հասցե</div><div class="info-value">hmkrtchyan323@gmail.com</div></div>
+                    <div class="info-item"><div class="info-label" data-lang-key="age">Age</div><div class="info-value" data-lang-key="age_val">26 years old</div></div>
+                    <div class="info-item"><div class="info-label" data-lang-key="loc">Location</div><div class="info-value" data-lang-key="loc_val">Yerevan, Armenia</div></div>
+                    <div class="info-item"><div class="info-label" data-lang-key="phone">Phone</div><div class="info-value"><a href="tel:+37493041217">+374 93 04 12 17</a></div></div>
+                    <div class="info-item"><div class="info-label" data-lang-key="email">Email</div><div class="info-value"><a href="mailto:hmkrtchyan323@gmail.com">hmkrtchyan323@gmail.com</a></div></div>
                 </div>
             </div>
             <div class="fade-in" style="text-align: center;">
@@ -144,34 +149,34 @@
 
     <section class="section" id="services" style="background: rgba(0,0,0,0.3); max-width: 100%;">
         <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title fade-in" data-lang-key="services_title">Իմ Ծառայությունները</h2>
+            <h2 class="section-title fade-in" data-lang-key="services_title">My Services</h2>
             <div class="services-grid">
-                <div class="card fade-in"><span class="card-icon">🛍️</span><h3 data-lang-key="s1_title">Shopify Ամբողջական Ծառայություններ</h3><p data-lang-key="s1_desc">Խանութի զրոյից ստեղծում, թեմաների տեղադրում, ապրանքների բեռնում և կարգավորումներ։</p></div>
-                <div class="card fade-in"><span class="card-icon">⚙️</span><h3 data-lang-key="s2_title">Custom Shopify Լուծումներ</h3><p data-lang-key="s2_desc">Liquid կոդի գրում, հատուկ ֆունկցիոնալության ավելացում և ստանդարտ հնարավորությունների ընդլայնում։</p></div>
-                <div class="card fade-in"><span class="card-icon">💻</span><h3 data-lang-key="s3_title">GitHub Կառավարում</h3><p data-lang-key="s3_desc">Կոդի տարբերակների կառավարում, համագործակցություն և կայքի անվտանգ դեպլոյմենտ։</p></div>
-                <div class="card fade-in"><span class="card-icon">🚀</span><h3 data-lang-key="s4_title">Landing Page-ների Ստեղծում</h3><p data-lang-key="s4_desc">Բարձր կոնվերսիայով վայրէջքի էջերի դիզայն և մշակում՝ մարքեթինգային արշավների համար։</p></div>
-                <div class="card fade-in"><span class="card-icon">🌍</span><h3 data-lang-key="s5_title">Բազմալեզու Թարգմանություն</h3><p data-lang-key="s5_desc">Կայքերի լիարժեք բազմալեզու (HY/EN/RU) դարձնելու հնարավորություն և լոկալիզացիայի կարգավորում (ինչպես այս կայքում). </p></div>
+                <div class="card fade-in"><span class="card-icon">🛍️</span><h3 data-lang-key="s1_title">Full Shopify Services</h3><p data-lang-key="s1_desc">Store creation from scratch, theme installation, product upload, and configuration.</p></div>
+                <div class="card fade-in"><span class="card-icon">⚙️</span><h3 data-lang-key="s2_title">Custom Shopify Solutions</h3><p data-lang-key="s2_desc">Liquid coding, adding custom functionality, and extending standard capabilities.</p></div>
+                <div class="card fade-in"><span class="card-icon">💻</span><h3 data-lang-key="s3_title">GitHub Management</h3><p data-lang-key="s3_desc">Version control, collaboration, and secure website deployment.</p></div>
+                <div class="card fade-in"><span class="card-icon">🚀</span><h3 data-lang-key="s4_title">Landing Page Creation</h3><p data-lang-key="s4_desc">Design and development of high-converting landing pages for marketing campaigns.</p></div>
+                <div class="card fade-in"><span class="card-icon">🌍</span><h3 data-lang-key="s5_title">Multilingual Translation</h3><p data-lang-key="s5_desc">Full multilingual (HY/EN/RU) website implementation and localization setup (just like this site).</p></div>
             </div>
         </div>
     </section>
 
     <section class="section" id="projects">
-        <h2 class="section-title fade-in" data-lang-key="projects_title">Իմ Նախագծերը</h2>
+        <h2 class="section-title fade-in" data-lang-key="projects_title">My Projects</h2>
         <div class="projects-grid">
             <div class="card project-card highlight fade-in">
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="Store" class="project-image">
                 <div class="project-content">
-                    <h3 data-lang-key="p1_title">🏆 Հիմնական Shopify Խանութ</h3>
-                    <p data-lang-key="p1_desc">Իմ անձնական նախագիծը, որտեղ կիրառված են Shopify-ի լավագույն պրակտիկաները, custom դիզայն և օպտիմալացում։</p>
-                    <a href="https://hovik-mkrtchyan.myshopify.com/" target="_blank" class="project-link" data-lang-key="p1_link">Դիտել Կենդանի Խանութը →</a>
+                    <h3 data-lang-key="p1_title">🏆 Main Shopify Store</h3>
+                    <p data-lang-key="p1_desc">My personal project applying Shopify best practices, custom design, and optimization.</p>
+                    <a href="https://hovik-mkrtchyan.myshopify.com/" target="_blank" class="project-link" data-lang-key="p1_link">View Live Store →</a>
                 </div>
             </div>
             <div class="card project-card fade-in">
                 <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="Landing Page" class="project-image">
                 <div class="project-content">
-                    <h3 data-lang-key="p2_title">🚀 Landing Page Նախագիծ</h3>
-                    <p data-lang-key="p2_desc">Բարձր կոնվերսիայով վայրէջքի էջ՝ ստեղծված կոնկրետ արշավի համար՝ անիմացիաներով և ադապտիվ դիզայնով։</p>
-                    <a href="https://hovik-mkrtchyan.myshopify.com/pages/lp" target="_blank" class="project-link" data-lang-key="p2_link">Դիտել Landing Page →</a>
+                    <h3 data-lang-key="p2_title">🚀 Landing Page Project</h3>
+                    <p data-lang-key="p2_desc">High-converting landing page built for a specific campaign with animations and responsive design.</p>
+                    <a href="https://hovik-mkrtchyan.myshopify.com/pages/lp" target="_blank" class="project-link" data-lang-key="p2_link">View Landing Page →</a>
                 </div>
             </div>
         </div>
@@ -179,15 +184,15 @@
 
     <section class="section" id="contact">
         <div class="contact-content fade-in">
-            <h2 class="section-title" data-lang-key="contact_title">Կապնվենք</h2>
-            <p data-lang-key="contact_desc">Պատրաստ եմ քննարկել քո նախագիծը և օգնել ստեղծել իդեալական խանութ Shopify-ում։</p>
+            <h2 class="section-title" data-lang-key="contact_title">Get In Touch</h2>
+            <p data-lang-key="contact_desc">Ready to discuss your project and help you build the ideal Shopify store.</p>
             <div class="contact-details">
-                <div class="contact-item"><span>📞</span> +374 93 04 12 17</div>
-                <div class="contact-item"><span>✉️</span> hmkrtchyan323@gmail.com</div>
-                <div class="contact-item"><span>📍</span> <span data-lang-key="loc_val">Երևան, Հայաստան</span></div>
+                <div class="contact-item"><span>📞</span> <a href="tel:+37493041217">+374 93 04 12 17</a></div>
+                <div class="contact-item"><span>✉️</span> <a href="mailto:hmkrtchyan323@gmail.com">hmkrtchyan323@gmail.com</a></div>
+                <div class="contact-item"><span>📍</span> <span data-lang-key="loc_val">Yerevan, Armenia</span></div>
             </div>
             <div class="social-links">
-                <a href="mailto:hmkrtchyan323@gmail.com" class="social-link" data-lang-key="email">Email</a>
+                <a href="mailto:hmkrtchyan323@gmail.com" class="social-link">Email Me</a>
                 <a href="https://github.com/" class="social-link" target="_blank">GitHub</a>
                 <a href="https://linkedin.com/" class="social-link" target="_blank">LinkedIn</a>
             </div>
@@ -195,11 +200,10 @@
     </section>
 
     <footer>
-        <p data-lang-key="footer">© 2026 Հովիկ Մկրտչյան | Shopify Developer. Բոլոր իրավունքները պաշտպանված են:</p>
+        <p data-lang-key="footer">© 2026 Hovik Mkrtchyan | Shopify Developer. All rights reserved.</p>
     </footer>
 
     <script>
-        // Թարգմանությունների բազա
         const translations = {
             hy: {
                 home: "Գլխավոր", about: "Իմ մասին", services: "Ծառայություններ", projects: "Նախագծեր", contact: "Կապ",
@@ -270,12 +274,18 @@
                     el.textContent = translations[lang][key];
                 }
             });
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
             document.documentElement.lang = lang;
         }
 
-        // Մասնիկներ և անիմացիա
+        // Սահմանում ենք անգլերենը որպես լռելյայն լեզու կայքը բացելիս
+        setLang('en');
+
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 40; i++) {
             const particle = document.createElement('div');
