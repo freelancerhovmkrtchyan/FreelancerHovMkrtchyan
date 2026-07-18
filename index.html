@@ -3,958 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopify Developer Portfolio | Իմ Աշխատանքները</title>
+    <title>Hovik Mkrtchyan | Shopify Developer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #667eea; --secondary: #764ba2; --dark: #0a0a0a; --light: #ffffff; --gray: #a0a0a0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark); color: var(--light); line-height: 1.6; overflow-x: hidden; }
+        
+        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0a0a0a); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .particle { position: absolute; width: 4px; height: 4px; background: rgba(102, 126, 234, 0.6); border-radius: 50%; animation: float 20s infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10%, 90% { opacity: 1; } 100% { transform: translateY(-100vh) translateX(100px); opacity: 0; } }
+
+        header { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); animation: slideDown 0.8s ease; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .logo { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        nav { display: flex; align-items: center; gap: 20px; }
+        nav a { color: var(--gray); text-decoration: none; font-weight: 500; transition: all 0.3s; position: relative; font-size: 15px; }
+        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s; }
+        nav a:hover { color: var(--light); }
+        nav a:hover::after { width: 100%; }
+
+        .lang-switch { display: flex; gap: 5px; margin-left: 20px; }
+        .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--gray); padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.3s; }
+        .lang-btn:hover, .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; }
+        .hero-content { animation: fadeInUp 1s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-content h1 { font-size: 64px; font-weight: 800; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-content .subtitle { font-size: 20px; color: var(--primary); font-weight: 600; margin-bottom: 10px; letter-spacing: 2px; }
+        .hero-content p { font-size: 18px; color: var(--gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .btn { padding: 14px 35px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; display: inline-block; border: none; cursor: pointer; font-size: 15px; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: var(--light); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6); }
+        .btn-secondary { background: transparent; color: var(--light); border: 2px solid rgba(255, 255, 255, 0.3); margin-left: 15px; }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--light); transform: translateY(-5px); }
+
+        .section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 40px; font-weight: 800; margin-bottom: 60px; background: linear-gradient(135deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text p { color: var(--gray); font-size: 16px; margin-bottom: 20px; line-height: 1.8; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .info-item { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .info-label { color: var(--gray); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .info-value { color: var(--light); font-size: 16px; font-weight: 600; }
+
+        .services-grid, .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2); }
+        .card-icon { font-size: 40px; margin-bottom: 15px; display: block; }
+        .card h3 { font-size: 20px; margin-bottom: 10px; color: var(--light); }
+        .card p { color: var(--gray); font-size: 14px; line-height: 1.7; }
+
+        .project-card { overflow: hidden; padding: 0; }
+        .project-card.highlight { border: 2px solid var(--primary); background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); }
+        .project-image { width: 100%; height: 200px; object-fit: cover; transition: transform 0.5s; }
+        .project-card:hover .project-image { transform: scale(1.05); }
+        .project-content { padding: 25px; }
+        .project-link { color: var(--primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; margin-top: 15px; }
+        .project-link:hover { gap: 15px; color: var(--secondary); }
+
+        .contact-content { text-align: center; max-width: 600px; margin: 0 auto; }
+        .contact-details { display: flex; flex-direction: column; gap: 15px; margin: 30px 0; font-size: 18px; }
+        .contact-item { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--light); }
+        .contact-item span { color: var(--primary); }
+        .social-links { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+        .social-link { background: rgba(255, 255, 255, 0.05); color: var(--light); padding: 12px 25px; border-radius: 50px; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; }
+        .social-link:hover { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-color: transparent; transform: translateY(-3px); }
+
+        footer { background: rgba(0, 0, 0, 0.5); padding: 30px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 50px; }
+        footer p { color: #666; font-size: 14px; }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --dark: #0a0a0a;
-            --light: #ffffff;
-            --gray: #888;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0a0a0a);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(102, 126, 234, 0.5);
-            border-radius: 50%;
-            animation: float 20s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideDown 0.8s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        nav a {
-            color: var(--gray);
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--light);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 20px;
-            position: relative;
-        }
-
-        .hero-content {
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content h1 {
-            font-size: 72px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes textGlow {
-            0%, 100% {
-                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.3));
-            }
-            50% {
-                filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.6));
-            }
-        }
-
-        .hero-content p {
-            font-size: 24px;
-            color: var(--gray);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeIn 1.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--light);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--light);
-            transform: translateY(-5px);
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text {
-            animation: slideInLeft 1s ease;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .about-text h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .about-text p {
-            color: var(--gray);
-            font-size: 18px;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .stat:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 14px;
-        }
-
-        .about-image {
-            position: relative;
-            animation: slideInRight 1s ease;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: 20px;
-            bottom: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 20px;
-            z-index: -1;
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 100px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, #fff 0%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.5s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: rgba(102, 126, 234, 0.5);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-content h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--light);
-            transition: color 0.3s;
-        }
-
-        .project-card:hover .project-content h3 {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .project-content p {
-            color: var(--gray);
-            margin-bottom: 20px;
-            font-size: 15px;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .tag {
-            background: rgba(102, 126, 234, 0.2);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .tag:hover {
-            background: var(--primary);
-            color: var(--light);
-            transform: scale(1.1);
-        }
-
-        .project-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s;
-        }
-
-        .project-link:hover {
-            gap: 15px;
-            color: var(--secondary);
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 100px 5%;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
-        }
-
-        .skill-card:hover::before {
-            left: 100%;
-        }
-
-        .skill-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-        }
-
-        .skill-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            transition: transform 0.5s;
-        }
-
-        .skill-card:hover .skill-icon {
-            transform: scale(1.2) rotate(360deg);
-        }
-
-        .skill-card h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: var(--light);
-            position: relative;
-            z-index: 1;
-        }
-
-        .skill-card p {
-            color: var(--gray);
-            font-size: 14px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 100px 5%;
-            text-align: center;
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-content h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-content p {
-            color: var(--gray);
-            font-size: 18px;
-            margin-bottom: 40px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .social-link:hover::before {
-            left: 100%;
-        }
-
-        .social-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-color: transparent;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 40px 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        footer p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 40px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Scroll Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            nav a:not(.lang-btn) { display: none; }
+            .hero-content h1 { font-size: 40px; }
+            .about-content { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 32px; }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
     <div class="bg-animation"></div>
-    
-    <!-- Floating Particles -->
     <div class="particles" id="particles"></div>
 
-    <!-- Header -->
     <header>
-        <div class="logo">Shopify Dev</div>
+        <div class="logo">Hovik Mkrtchyan</div>
         <nav>
-            <a href="#home">Գլխավոր</a>
-            <a href="#about">Իմ մասին</a>
-            <a href="#projects">Նախագծեր</a>
-            <a href="#skills">Հմտություններ</a>
-            <a href="#contact">Կապ</a>
+            <a href="#home" data-lang-key="home">Գլխավոր</a>
+            <a href="#about" data-lang-key="about">Իմ մասին</a>
+            <a href="#services" data-lang-key="services">Ծառայություններ</a>
+            <a href="#projects" data-lang-key="projects">Նախագծեր</a>
+            <a href="#contact" data-lang-key="contact">Կապ</a>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('hy')">HY</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" onclick="setLang('ru')">RU</button>
+            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Shopify Developer</h1>
-            <p>Ստեղծում եմ ժամանակակից, արագ և գեղեցիկ խանութներ Shopify-ի միջոցով</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">Դիտել Աշխատանքները</a>
-                <a href="#contact" class="btn btn-secondary">Կապնվել</a>
+            <div class="subtitle" data-lang-key="hero_subtitle">SHOPIFY ՄՇԱԿՈՂ</div>
+            <h1 data-lang-key="hero_title">Հովիկ Մկրտչյան</h1>
+            <p data-lang-key="hero_desc">Ստեղծում եմ ժամանակակից, արագ և վաճառքը խթանող խանութներ Shopify-ի միջոցով։ Քո բիզնեսի թվային հաջողության գրավականը։</p>
+            <div>
+                <a href="#projects" class="btn btn-primary" data-lang-key="btn_works">Դիտել Իմ Աշխատանքը</a>
+                <a href="#contact" class="btn btn-secondary" data-lang-key="btn_contact">Կապնվել Ինձ Հետ</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <section class="section" id="about">
         <div class="about-content">
             <div class="about-text fade-in">
-                <h2>Իմ մասին</h2>
-                <p>
-                    Ես Shopify դեվելոփեր եմ, ով ստեղծում է ժամանակակից և ֆունկցիոնալ խանութներ։ 
-                    Իմ նպատակն է օգնել բիզնեսներին հասնել հաջողության առցանց առևտրի ոլորտում։
-                </p>
-                <p>
-                    Մասնագիտանում եմ custom թեմաների ստեղծման, Liquid ծրագրավորման և 
-                    օգտագործողի փորձի բարելավման մեջ։ Յուրաքանչյուր նախագիծ իմ համար 
-                    հնարավորություն է ստեղծելու ինչ-որ յուրահատուկ։
-                </p>
-                <div class="about-stats">
-                    <div class="stat">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Ավարտված նախագծեր</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">3+</div>
-                        <div class="stat-label">Տարվա փորձ</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">Գոհ հաճախորդներ</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Նվիրվածություն</div>
-                    </div>
+                <h2 class="section-title" style="text-align: left; margin-bottom: 20px;" data-lang-key="about_title">Իմ մասին</h2>
+                <p data-lang-key="about_p1">Ես պրոֆեսիոնալ Shopify մշակող եմ Երևանից։ Իմ նպատակն է օգնել բիզնեսներին հասնել առավելագույն արդյունքների առցանց առևտրի ոլորտում՝ առաջարկելով ինչպես ստանդարտ, այնպես էլ լիովին անհատականացված լուծումներ։</p>
+                <div class="info-grid">
+                    <div class="info-item"><div class="info-label" data-lang-key="age">Տարիք</div><div class="info-value" data-lang-key="age_val">26 տարեկան</div></div>
+                    <div class="info-item"><div class="info-label" data-lang-key="loc">Գտնվելու վայր</div><div class="info-value" data-lang-key="loc_val">Երևան, Հայաստան</div></div>
+                    <div class="info-item"><div class="info-label" data-lang-key="phone">Հեռախոս</div><div class="info-value">+374 93 04 12 17</div></div>
+                    <div class="info-item"><div class="info-label" data-lang-key="email">Էլ. հասցե</div><div class="info-value">hmkrtchyan323@gmail.com</div></div>
                 </div>
             </div>
-            <div class="about-image fade-in">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="Developer">
+            <div class="fade-in" style="text-align: center;">
+                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500" alt="Profile" style="width: 100%; max-width: 350px; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);">
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2 class="section-title fade-in">Իմ Նախագծերը</h2>
+    <section class="section" id="services" style="background: rgba(0,0,0,0.3); max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title fade-in" data-lang-key="services_title">Իմ Ծառայությունները</h2>
+            <div class="services-grid">
+                <div class="card fade-in"><span class="card-icon">🛍️</span><h3 data-lang-key="s1_title">Shopify Ամբողջական Ծառայություններ</h3><p data-lang-key="s1_desc">Խանութի զրոյից ստեղծում, թեմաների տեղադրում, ապրանքների բեռնում և կարգավորումներ։</p></div>
+                <div class="card fade-in"><span class="card-icon">⚙️</span><h3 data-lang-key="s2_title">Custom Shopify Լուծումներ</h3><p data-lang-key="s2_desc">Liquid կոդի գրում, հատուկ ֆունկցիոնալության ավելացում և ստանդարտ հնարավորությունների ընդլայնում։</p></div>
+                <div class="card fade-in"><span class="card-icon">💻</span><h3 data-lang-key="s3_title">GitHub Կառավարում</h3><p data-lang-key="s3_desc">Կոդի տարբերակների կառավարում, համագործակցություն և կայքի անվտանգ դեպլոյմենտ։</p></div>
+                <div class="card fade-in"><span class="card-icon">🚀</span><h3 data-lang-key="s4_title">Landing Page-ների Ստեղծում</h3><p data-lang-key="s4_desc">Բարձր կոնվերսիայով վայրէջքի էջերի դիզայն և մշակում՝ մարքեթինգային արշավների համար։</p></div>
+                <div class="card fade-in"><span class="card-icon">🌍</span><h3 data-lang-key="s5_title">Բազմալեզու Թարգմանություն</h3><p data-lang-key="s5_desc">Կայքերի լիարժեք բազմալեզու (HY/EN/RU) դարձնելու հնարավորություն և լոկալիզացիայի կարգավորում (ինչպես այս կայքում). </p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <h2 class="section-title fade-in" data-lang-key="projects_title">Իմ Նախագծերը</h2>
         <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="E-commerce Store" class="project-image">
+            <div class="card project-card highlight fade-in">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="Store" class="project-image">
                 <div class="project-content">
-                    <h3>Ժամանակակից Խանութ</h3>
-                    <p>Մինիմալիստական դիզայնով խանութ՝ ստեղծված fashion բրենդի համար</p>
-                    <div class="project-tags">
-                        <span class="tag">Shopify</span>
-                        <span class="tag">Liquid</span>
-                        <span class="tag">Custom Theme</span>
-                    </div>
-                    <a href="#" class="project-link">Դիտել →</a>
+                    <h3 data-lang-key="p1_title">🏆 Հիմնական Shopify Խանութ</h3>
+                    <p data-lang-key="p1_desc">Իմ անձնական նախագիծը, որտեղ կիրառված են Shopify-ի լավագույն պրակտիկաները, custom դիզայն և օպտիմալացում։</p>
+                    <a href="https://hovik-mkrtchyan.myshopify.com/" target="_blank" class="project-link" data-lang-key="p1_link">Դիտել Կենդանի Խանութը →</a>
                 </div>
             </div>
-
-            <!-- Project 2 -->
-            <div class="project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="Product Page" class="project-image">
+            <div class="card project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="Landing Page" class="project-image">
                 <div class="project-content">
-                    <h3>Ապրանքի Էջ</h3>
-                    <p>Ինտերակտիվ ապրանքի էջ՝ 3D պատկերներով և անիմացիաներով</p>
-                    <div class="project-tags">
-                        <span class="tag">Shopify</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">3D</span>
-                    </div>
-                    <a href="#" class="project-link">Դիտել →</a>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600" alt="Mobile Store" class="project-image">
-                <div class="project-content">
-                    <h3>Mobile-First Խանութ</h3>
-                    <p>Ադապտիվ դիզայն՝ նախատեսված հեռախոսների համար</p>
-                    <div class="project-tags">
-                        <span class="tag">Shopify</span>
-                        <span class="tag">Responsive</span>
-                        <span class="tag">Mobile</span>
-                    </div>
-                    <a href="#" class="project-link">Դիտել →</a>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600" alt="Checkout" class="project-image">
-                <div class="project-content">
-                    <h3>Custom Checkout</h3>
-                    <p>Անհատականացված checkout էջ՝ բարելավված օգտագործողի փորձով</p>
-                    <div class="project-tags">
-                        <span class="tag">Shopify Plus</span>
-                        <span class="tag">Checkout</span>
-                        <span class="tag">UX</span>
-                    </div>
-                    <a href="#" class="project-link">Դիտել →</a>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1472851294608-062f822d4171?w=600" alt="Blog" class="project-image">
-                <div class="project-content">
-                    <h3>Blog Ինտեգրացիա</h3>
-                    <p>Խանութի և բլոգի ինտեգրացիա՝ SEO օպտիմիզացիայով</p>
-                    <div class="project-tags">
-                        <span class="tag">Shopify</span>
-                        <span class="tag">Blog</span>
-                        <span class="tag">SEO</span>
-                    </div>
-                    <a href="#" class="project-link">Դիտել →</a>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=600" alt="App Integration" class="project-image">
-                <div class="project-content">
-                    <h3>App Ինտեգրացիա</h3>
-                    <p>Երրորդ կողմի app-երի ինտեգրացիա և custom ֆունկցիոնալություն</p>
-                    <div class="project-tags">
-                        <span class="tag">Shopify API</span>
-                        <span class="tag">Apps</span>
-                        <span class="tag">Integration</span>
-                    </div>
-                    <a href="#" class="project-link">Դիտել →</a>
+                    <h3 data-lang-key="p2_title">🚀 Landing Page Նախագիծ</h3>
+                    <p data-lang-key="p2_desc">Բարձր կոնվերսիայով վայրէջքի էջ՝ ստեղծված կոնկրետ արշավի համար՝ անիմացիաներով և ադապտիվ դիզայնով։</p>
+                    <a href="https://hovik-mkrtchyan.myshopify.com/pages/lp" target="_blank" class="project-link" data-lang-key="p2_link">Դիտել Landing Page →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <h2 class="section-title fade-in">Իմ Հմտությունները</h2>
-        <div class="skills-grid">
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🛍️</div>
-                <h3>Shopify Development</h3>
-                <p>Custom themes, Liquid programming, Store setup</p>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🎨</div>
-                <h3>UI/UX Design</h3>
-                <p>Modern design, User experience, Responsive layouts</p>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">💻</div>
-                <h3>Frontend Development</h3>
-                <p>HTML5, CSS3, JavaScript, React</p>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">⚡</div>
-                <h3>Performance</h3>
-                <p>Speed optimization, SEO, Core Web Vitals</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="section" id="contact">
         <div class="contact-content fade-in">
-            <h2>Կապնվենք</h2>
-            <p>Պատրաստ եմ օգնել քեզ ստեղծել իդեալական խանութ Shopify-ում</p>
+            <h2 class="section-title" data-lang-key="contact_title">Կապնվենք</h2>
+            <p data-lang-key="contact_desc">Պատրաստ եմ քննարկել քո նախագիծը և օգնել ստեղծել իդեալական խանութ Shopify-ում։</p>
+            <div class="contact-details">
+                <div class="contact-item"><span>📞</span> +374 93 04 12 17</div>
+                <div class="contact-item"><span>✉️</span> hmkrtchyan323@gmail.com</div>
+                <div class="contact-item"><span>📍</span> <span data-lang-key="loc_val">Երևան, Հայաստան</span></div>
+            </div>
             <div class="social-links">
-                <a href="mailto:your.email@example.com" class="social-link">📧 Email</a>
-                <a href="https://github.com/yourusername" class="social-link">💻 GitHub</a>
-                <a href="https://linkedin.com/in/yourusername" class="social-link">💼 LinkedIn</a>
-                <a href="https://t.me/yourusername" class="social-link">✈️ Telegram</a>
+                <a href="mailto:hmkrtchyan323@gmail.com" class="social-link" data-lang-key="email">Email</a>
+                <a href="https://github.com/" class="social-link" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/" class="social-link" target="_blank">LinkedIn</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Shopify Developer Portfolio. Բոլոր իրավունքները պաշտպանված են:</p>
+        <p data-lang-key="footer">© 2026 Հովիկ Մկրտչյան | Shopify Developer. Բոլոր իրավունքները պաշտպանված են:</p>
     </footer>
 
     <script>
-        // Create floating particles
+        // Թարգմանությունների բազա
+        const translations = {
+            hy: {
+                home: "Գլխավոր", about: "Իմ մասին", services: "Ծառայություններ", projects: "Նախագծեր", contact: "Կապ",
+                hero_subtitle: "SHOPIFY ՄՇԱԿՈՂ", hero_title: "Հովիկ Մկրտչյան",
+                hero_desc: "Ստեղծում եմ ժամանակակից, արագ և վաճառքը խթանող խանութներ Shopify-ի միջոցով։ Քո բիզնեսի թվային հաջողության գրավականը։",
+                btn_works: "Դիտել Իմ Աշխատանքը", btn_contact: "Կապնվել Ինձ Հետ",
+                about_title: "Իմ մասին",
+                about_p1: "Ես պրոֆեսիոնալ Shopify մշակող եմ Երևանից։ Իմ նպատակն է օգնել բիզնեսներին հասնել առավելագույն արդյունքների առցանց առևտրի ոլորտում՝ առաջարկելով ինչպես ստանդարտ, այնպես էլ լիովին անհատականացված լուծումներ։",
+                age: "Տարիք", age_val: "26 տարեկան", loc: "Գտնվելու վայր", loc_val: "Երևան, Հայաստան", phone: "Հեռախոս", email: "Էլ. հասցե",
+                services_title: "Իմ Ծառայությունները",
+                s1_title: "Shopify Ամբողջական Ծառայություններ", s1_desc: "Խանութի զրոյից ստեղծում, թեմաների տեղադրում, ապրանքների բեռնում և կարգավորումներ։",
+                s2_title: "Custom Shopify Լուծումներ", s2_desc: "Liquid կոդի գրում, հատուկ ֆունկցիոնալության ավելացում և ստանդարտ հնարավորությունների ընդլայնում։",
+                s3_title: "GitHub Կառավարում", s3_desc: "Կոդի տարբերակների կառավարում, համագործակցություն և կայքի անվտանգ դեպլոյմենտ։",
+                s4_title: "Landing Page-ների Ստեղծում", s4_desc: "Բարձր կոնվերսիայով վայրէջքի էջերի դիզայն և մշակում՝ մարքեթինգային արշավների համար։",
+                s5_title: "Բազմալեզու Թարգմանություն", s5_desc: "Կայքերի լիարժեք բազմալեզու (HY/EN/RU) դարձնելու հնարավորություն և լոկալիզացիայի կարգավորում (ինչպես այս կայքում):",
+                projects_title: "Իմ Նախագծերը",
+                p1_title: "🏆 Հիմնական Shopify Խանութ", p1_desc: "Իմ անձնական նախագիծը, որտեղ կիրառված են Shopify-ի լավագույն պրակտիկաները, custom դիզայն և օպտիմալացում։", p1_link: "Դիտել Կենդանի Խանութը →",
+                p2_title: "🚀 Landing Page Նախագիծ", p2_desc: "Բարձր կոնվերսիայով վայրէջքի էջ՝ ստեղծված կոնկրետ արշավի համար՝ անիմացիաներով և ադապտիվ դիզայնով։", p2_link: "Դիտել Landing Page →",
+                contact_title: "Կապնվենք", contact_desc: "Պատրաստ եմ քննարկել քո նախագիծը և օգնել ստեղծել իդեալական խանութ Shopify-ում։",
+                footer: "© 2026 Հովիկ Մկրտչյան | Shopify Developer. Բոլոր իրավունքները պաշտպանված են:"
+            },
+            en: {
+                home: "Home", about: "About", services: "Services", projects: "Projects", contact: "Contact",
+                hero_subtitle: "SHOPIFY DEVELOPER", hero_title: "Hovik Mkrtchyan",
+                hero_desc: "I build modern, fast, and high-converting stores on Shopify. The key to your business's digital success.",
+                btn_works: "View My Work", btn_contact: "Contact Me",
+                about_title: "About Me",
+                about_p1: "I am a professional Shopify developer from Yerevan. My goal is to help businesses achieve maximum results in e-commerce by offering both standard and fully custom solutions.",
+                age: "Age", age_val: "26 years old", loc: "Location", loc_val: "Yerevan, Armenia", phone: "Phone", email: "Email",
+                services_title: "My Services",
+                s1_title: "Full Shopify Services", s1_desc: "Store creation from scratch, theme installation, product upload, and configuration.",
+                s2_title: "Custom Shopify Solutions", s2_desc: "Liquid coding, adding custom functionality, and extending standard capabilities.",
+                s3_title: "GitHub Management", s3_desc: "Version control, collaboration, and secure website deployment.",
+                s4_title: "Landing Page Creation", s4_desc: "Design and development of high-converting landing pages for marketing campaigns.",
+                s5_title: "Multilingual Translation", s5_desc: "Full multilingual (HY/EN/RU) website implementation and localization setup (just like this site).",
+                projects_title: "My Projects",
+                p1_title: "🏆 Main Shopify Store", p1_desc: "My personal project applying Shopify best practices, custom design, and optimization.", p1_link: "View Live Store →",
+                p2_title: "🚀 Landing Page Project", p2_desc: "High-converting landing page built for a specific campaign with animations and responsive design.", p2_link: "View Landing Page →",
+                contact_title: "Get In Touch", contact_desc: "Ready to discuss your project and help you build the ideal Shopify store.",
+                footer: "© 2026 Hovik Mkrtchyan | Shopify Developer. All rights reserved."
+            },
+            ru: {
+                home: "Главная", about: "Обо мне", services: "Услуги", projects: "Проекты", contact: "Контакты",
+                hero_subtitle: "SHOPIFY РАЗРАБОТЧИК", hero_title: "Овик Мкртчян",
+                hero_desc: "Я создаю современные, быстрые и высококонверсионные магазины на Shopify. Ключ к цифровому успеху вашего бизнеса.",
+                btn_works: "Посмотреть работы", btn_contact: "Связаться со мной",
+                about_title: "Обо мне",
+                about_p1: "Я профессиональный Shopify разработчик из Еревана. Моя цель — помочь бизнесу достичь максимальных результатов в электронной коммерции, предлагая как стандартные, так и полностью индивидуальные решения.",
+                age: "Возраст", age_val: "26 лет", loc: "Местоположение", loc_val: "Ереван, Армения", phone: "Телефон", email: "Email",
+                services_title: "Мои Услуги",
+                s1_title: "Полный спектр услуг Shopify", s1_desc: "Создание магазина с нуля, установка тем, загрузка товаров и настройка.",
+                s2_title: "Индивидуальные решения Shopify", s2_desc: "Написание кода на Liquid, добавление кастомного функционала и расширение стандартных возможностей.",
+                s3_title: "Управление GitHub", s3_desc: "Контроль версий кода, совместная работа и безопасный деплой сайта.",
+                s4_title: "Создание Landing Page", s4_desc: "Дизайн и разработка высококонверсионных посадочных страниц для маркетинговых кампаний.",
+                s5_title: "Многоязычный перевод", s5_desc: "Полная реализация многоязычного сайта (HY/EN/RU) и настройка локализации (как на этом сайте).",
+                projects_title: "Мои Проекты",
+                p1_title: "🏆 Основной магазин Shopify", p1_desc: "Мой личный проект, применяющий лучшие практики Shopify, кастомный дизайн и оптимизацию.", p1_link: "Посмотреть живой магазин →",
+                p2_title: "🚀 Проект Landing Page", p2_desc: "Высококонверсионная посадочная страница, созданная для конкретной кампании с анимациями и адаптивным дизайном.", p2_link: "Посмотреть Landing Page →",
+                contact_title: "Связаться", contact_desc: "Готов обсудить ваш проект и помочь создать идеальный магазин на Shopify.",
+                footer: "© 2026 Овик Мкртчян | Shopify Developer. Все права защищены."
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.getAttribute('data-lang-key');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            document.documentElement.lang = lang;
+        }
+
+        // Մասնիկներ և անիմացիա
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 40; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
@@ -963,50 +286,19 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Parallax effect on mouse move
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            document.querySelectorAll('.project-card').forEach(card => {
-                const speed = 5;
-                const x = (window.innerWidth / 2 - e.clientX) / speed;
-                const y = (window.innerHeight / 2 - e.clientY) / speed;
-                card.style.transform = `translateX(${x}px) translateY(${y}px)`;
-            });
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
