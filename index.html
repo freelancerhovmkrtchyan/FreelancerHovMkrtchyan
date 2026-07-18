@@ -3,455 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hovik Mkrtchyan — Shopify & Web Expert</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Shopify Developer Portfolio | Իմ Աշխատանքները</title>
     <style>
-        :root {
-            /* Premium Deep Navy Palette */
-            --bg-main: #020617;       /* Very dark navy */
-            --bg-card: #0f172a;       /* Slate 900 */
-            --bg-card-hover: #1e293b; /* Slate 800 */
-            --border-color: #1e293b;
-            --border-hover: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            
-            /* Dynamic Accent Gradient Colors */
-            --accent-cyan: #06b6d4;
-            --accent-blue: #3b82f6;
-            --accent-glow: rgba(6, 182, 212, 0.15);
-            
-            --font-heading: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
         body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            font-family: var(--font-body);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        ul { list-style: none; }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-
-        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
-        .text-accent { 
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            color: #888;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
             display: inline-block;
         }
-        .text-muted { color: var(--text-secondary); }
-        .section-padding { padding: 7rem 0; }
 
-        /* DYNAMIC BUTTONS */
-        .btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 1rem 2.2rem; border-radius: 100px;
-            font-weight: 600; font-size: 1rem; cursor: pointer;
-            border: none; transition: var(--transition);
-            position: relative; overflow: hidden;
-        }
-        .btn-primary { 
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); 
-            color: white;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
-        }
-        .btn-primary:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
         }
 
-        /* NAVIGATION */
-        .nav {
-            position: fixed; top: 0; width: 100%; z-index: 100;
-            padding: 1.2rem 0; background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color);
-        }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; }
-        .nav-links a:hover { color: var(--accent-cyan); }
-
-        /* LANGUAGE SWITCHER */
-        .lang-switcher {
-            display: flex; gap: 0.3rem; padding: 0.25rem;
-            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 100px;
-        }
-        .lang-btn {
-            padding: 0.4rem 0.7rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; background: transparent; color: var(--text-secondary);
-            border: none; transition: var(--transition);
-        }
-        .lang-btn.active { background: var(--accent-cyan); color: var(--bg-main); }
-
-        /* HERO WITH DYNAMIC GLOW */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            position: relative; padding-top: 100px; overflow: hidden;
-        }
-        .hero-glow {
-            position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);
-            width: 800px; height: 800px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-            filter: blur(80px); z-index: -1;
-            animation: pulseGlow 6s ease-in-out infinite alternate;
-        }
-        @keyframes pulseGlow {
-            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
-            100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
-        .hero-content { max-width: 800px; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1rem; background: var(--bg-card);
-            border: 1px solid var(--border-color); border-radius: 100px;
-            font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 2rem;
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .project-content p {
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
             font-weight: 500;
         }
-        .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); margin-bottom: 1.5rem; }
-        .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 550px; }
 
-        /* SERVICES GRID WITH HOVER EFFECTS */
-        .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem; margin-top: 4rem;
-        }
-        .service-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 20px; padding: 2.5rem; transition: var(--transition);
-            position: relative; overflow: hidden;
-        }
-        .service-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
-            transform: scaleX(0); transform-origin: left; transition: var(--transition);
-        }
-        .service-card:hover { 
-            border-color: var(--accent-cyan); 
-            background: var(--bg-card-hover); 
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .service-card:hover::before { transform: scaleX(1); }
-        
-        .service-icon {
-            width: 56px; height: 56px; 
-            background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.1));
-            border-radius: 16px; display: flex; align-items: center;
-            justify-content: center; font-size: 1.6rem; margin-bottom: 1.5rem;
-            border: 1px solid rgba(6,182,212,0.2);
-        }
-        .service-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
-        .service-card p { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
-
-        /* CONTACT SECTION */
-        .contact-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem;
-        }
-        .contact-info h3 { font-size: 2rem; margin-bottom: 1rem; }
-        .contact-info > p { color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7; }
-        .contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
-        .contact-item { display: flex; align-items: center; gap: 1rem; }
-        .contact-icon {
-            width: 48px; height: 48px; 
-            background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.1));
-            border-radius: 12px; display: flex; align-items: center;
-            justify-content: center; font-size: 1.2rem; flex-shrink: 0;
-            border: 1px solid rgba(6,182,212,0.2);
-        }
-        .contact-item-text h4 { font-weight: 600; margin-bottom: 0.2rem; font-size: 0.95rem; }
-        .contact-item-text p { color: var(--text-secondary); font-size: 0.95rem; }
-
-        .contact-form {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 20px; padding: 2.5rem;
-        }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--text-primary); }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 1rem 1.2rem; background: var(--bg-main);
-            border: 1px solid var(--border-color); border-radius: 12px;
-            font-family: inherit; font-size: 1rem; color: var(--text-primary); transition: var(--transition);
-        }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { 
-            outline: none; border-color: var(--accent-cyan); 
-            box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
-        }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-        /* FOOTER */
-        .footer { background: var(--bg-card); border-top: 1px solid var(--border-color); padding: 3rem 0 2rem; }
-        .footer-bottom {
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 1rem; color: var(--text-secondary); font-size: 0.9rem;
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 968px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .project-link:hover {
+            gap: 10px;
         }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 5%;
+            background: #0f0f0f;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .skill-card p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-content p {
+            color: #888;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.8rem; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; text-align: center; }
+            nav {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Shopify Dev</div>
+        <nav>
+            <a href="#home">Գլխավոր</a>
+            <a href="#projects">Նախագծեր</a>
+            <a href="#skills">Հմտություններ</a>
+            <a href="#contact">Կապ</a>
+        </nav>
+    </header>
 
-    <!-- NAVIGATION -->
-    <nav class="nav">
-        <div class="container nav-inner">
-            <a href="#home" class="logo">Hovik<span class="text-accent">Mkrtchyan</span></a>
-            <ul class="nav-links">
-                <li><a href="#home" data-i18n="nav_home">գլխավոր</a></li>
-                <li><a href="#services" data-i18n="nav_services">Ծառայություններ</a></li>
-                <li><a href="#contact" data-i18n="nav_contact">Կապ</a></li>
-                <li>
-                    <div class="lang-switcher">
-                        <button class="lang-btn active" data-lang="hy">ՀԱՅ</button>
-                        <button class="lang-btn" data-lang="en">EN</button>
-                        <button class="lang-btn" data-lang="ru">RU</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- HERO -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-glow"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge"><span data-i18n="hero_badge">Shopify & Web Developer</span></div>
-                <h1>
-                    <span data-i18n="hero_title_1">Ստեղծում եմ</span>
-                    <span class="text-accent" data-i18n="hero_title_2">վաճառող</span>
-                    <span data-i18n="hero_title_3">առցանց խանութներ</span>
-                </h1>
-                <p data-i18n="hero_subtitle">Պրոֆեսիոնալ Shopify ծառայություններ և ստատիկ կայքերի մշակում։ Անհատական մոտեցում և որակյալ արդյունք։</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary" data-i18n="hero_cta_primary">Կապվել ինձ հետ</a>
+        <div class="hero-content">
+            <h1>Shopify Developer</h1>
+            <p>Ստեղծում եմ ժամանակակից, արագ և գեղեցիկ խանութներ Shopify-ի միջոցով</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">Դիտել Աշխատանքները</a>
+                <a href="#contact" class="btn btn-secondary">Կապնվել</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Իմ Նախագծերը</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="E-commerce Store" class="project-image">
+                <div class="project-content">
+                    <h3>Ժամանակակից Խանութ</h3>
+                    <p>Մինիմալիստական դիզայնով խանութ՝ ստեղծված fashion բրենդի համար</p>
+                    <div class="project-tags">
+                        <span class="tag">Shopify</span>
+                        <span class="tag">Liquid</span>
+                        <span class="tag">Custom Theme</span>
+                    </div>
+                    <a href="#" class="project-link">Դիտել →</a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="Product Page" class="project-image">
+                <div class="project-content">
+                    <h3>Ապրանքի Էջ</h3>
+                    <p>Ինտերակտիվ ապրանքի էջ՝ 3D պատկերներով և անիմացիաներով</p>
+                    <div class="project-tags">
+                        <span class="tag">Shopify</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">3D</span>
+                    </div>
+                    <a href="#" class="project-link">Դիտել →</a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600" alt="Mobile Store" class="project-image">
+                <div class="project-content">
+                    <h3>Mobile-First Խանութ</h3>
+                    <p>Ադապտիվ դիզայն՝ նախատեսված հեռախոսների համար</p>
+                    <div class="project-tags">
+                        <span class="tag">Shopify</span>
+                        <span class="tag">Responsive</span>
+                        <span class="tag">Mobile</span>
+                    </div>
+                    <a href="#" class="project-link">Դիտել →</a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600" alt="Checkout" class="project-image">
+                <div class="project-content">
+                    <h3>Custom Checkout</h3>
+                    <p>Անհատականացված checkout էջ՝ բարելավված օգտագործողի փորձով</p>
+                    <div class="project-tags">
+                        <span class="tag">Shopify Plus</span>
+                        <span class="tag">Checkout</span>
+                        <span class="tag">UX</span>
+                    </div>
+                    <a href="#" class="project-link">Դիտել →</a>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1472851294608-062f822d4171?w=600" alt="Blog" class="project-image">
+                <div class="project-content">
+                    <h3>Blog Ինտեգրացիա</h3>
+                    <p>Խանութի և բլոգի ինտեգրացիա՝ SEO օպտիմիզացիայով</p>
+                    <div class="project-tags">
+                        <span class="tag">Shopify</span>
+                        <span class="tag">Blog</span>
+                        <span class="tag">SEO</span>
+                    </div>
+                    <a href="#" class="project-link">Դիտել →</a>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=600" alt="App Integration" class="project-image">
+                <div class="project-content">
+                    <h3>App Ինտեգրացիա</h3>
+                    <p>Երրորդ կողմի app-երի ինտեգրացիա և custom ֆունկցիոնալություն</p>
+                    <div class="project-tags">
+                        <span class="tag">Shopify API</span>
+                        <span class="tag">Apps</span>
+                        <span class="tag">Integration</span>
+                    </div>
+                    <a href="#" class="project-link">Դիտել →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="section-padding" id="services">
-        <div class="container">
-            <h2 style="font-size: 2.8rem; margin-bottom: 1rem;" data-i18n="services_title">Իմ Ծառայությունները</h2>
-            <p class="text-muted" style="font-size: 1.15rem;" data-i18n="services_subtitle">իարժեք լուծումներ Ձեր բիզնեսի թվային աճի համար</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🛍️</div>
-                    <h3 data-i18n="service_1_title">Shopify Ամբողջական Ծառայություններ</h3>
-                    <p data-i18n="service_1_desc">Խանութի ստեղծումից մինչև վերջնական գործարկում։ Theme, apps, payment և shipping settings։</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3 data-i18n="service_2_title">GitHub Static Կայքեր</h3>
-                    <p data-i18n="service_2_desc">Արագ, անվտանգ և անվար հոսթինգով ստատիկ կայքերի պատրաստում GitHub Pages-ի վրա։</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"></div>
-                    <h3 data-i18n="service_3_title">Product Listing</h3>
-                    <p data-i18n="service_3_desc">Ապրանքների ճիշտ և SEO-օպտիմիզացված տեղադրում՝ նկարներ, նկարագրություններ և tags։</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"></div>
-                    <h3 data-i18n="service_4_title">Shopify կայքերի Վերափոխում</h3>
-                    <p data-i18n="service_4_desc">Պատրաստի կայքերի դիզայնի և ֆունկցիոնալության բարելավում՝ conversion rate-ի բարձրացման համար։</p>
-                </div>
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Իմ Հմտությունները</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🛍️</div>
+                <h3>Shopify Development</h3>
+                <p>Custom themes, Liquid programming, Store setup</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3>UI/UX Design</h3>
+                <p>Modern design, User experience, Responsive layouts</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h3>Frontend Development</h3>
+                <p>HTML5, CSS3, JavaScript, React</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3>Performance</h3>
+                <p>Speed optimization, SEO, Core Web Vitals</p>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="section-padding" id="contact" style="background: var(--bg-card);">
-        <div class="container">
-            <h2 style="font-size: 2.8rem; margin-bottom: 1rem;" data-i18n="contact_title">կապ Մեզ Հետ</h2>
-            <p class="text-muted" style="font-size: 1.15rem;" data-i18n="contact_subtitle">Լրացրեք ձևը կամ կապվեք ուղղակիորեն</p>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3 data-i18n="contact_heading">Եկեք քննարկենք եր նախագիծը</h3>
-                    <p data-i18n="contact_desc">Ունե՞ք հարցեր կամ պատրա՞ստ եք սկսել։ Պատրաստ եմ օգնել Ձեզ յուրաքանչյուր քայլում։</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">👤</div>
-                            <div class="contact-item-text">
-                                <h4 data-i18n="name_label">Անուն Ազգանուն</h4>
-                                <p>Hovik Mkrtchyan</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📧</div>
-                            <div class="contact-item-text">
-                                <h4>Email</h4>
-                                <p>hmkrtchyan323@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📱</div>
-                            <div class="contact-item-text">
-                                <h4 data-i18n="phone_label">Հեռախոս</h4>
-                                <p>+374 93 041217</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-item-text">
-                                <h4 data-i18n="address_label">Հասցե</h4>
-                                <p data-i18n="address_value">ՀՀ, Երևան</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label data-i18n="form_name">Անուն *</label>
-                            <input type="text" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="form_service">Ծառայություն</label>
-                        <select>
-                            <option value="" data-i18n="form_select">նտրեք ծառայությունը</option>
-                            <option value="shopify" data-i18n="service_1_title">Shopify Ամբողջական Ծառայություններ</option>
-                            <option value="static" data-i18n="service_2_title">GitHub Static Կայքեր</option>
-                            <option value="listing" data-i18n="service_3_title">Product Listing</option>
-                            <option value="revamp" data-i18n="service_4_title">Shopify Կայքերի Վերափոխում</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="form_message">Հաղորդագրություն *</label>
-                        <textarea required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" data-i18n="form_submit">Ուղարկել Հաղորդագրությունը</button>
-                </form>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Կապնվենք</h2>
+            <p>Պատրաստ եմ օգնել քեզ ստեղծել իդեալական խանութ Shopify-ում</p>
+            <div class="social-links">
+                <a href="mailto:your.email@example.com" class="social-link">📧 Email</a>
+                <a href="https://github.com/yourusername" class="social-link">💻 GitHub</a>
+                <a href="https://linkedin.com/in/yourusername" class="social-link">💼 LinkedIn</a>
+                <a href="https://t.me/yourusername" class="social-link">✈️ Telegram</a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>© 2026 Hovik Mkrtchyan. <span data-i18n="footer_rights">Բոլոր իրավունքները պաշտպանված են։</span></p>
-                <p data-i18n="footer_made">Ստեղծված է ❤️-ով Հայաստանում</p>
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Shopify Developer Portfolio. Բոլոր իրավունքները պաշտպանված են:</p>
     </footer>
 
+    <!-- Smooth Scroll Script -->
     <script>
-        const translations = {
-            hy: {
-                nav_home: "Գլխավոր", nav_services: "առայություններ", nav_contact: "կապ",
-                hero_badge: "Shopify & Web Developer",
-                hero_title_1: "Ստեղծում եմ", hero_title_2: "վաճառող", hero_title_3: "առցանց խանութներ",
-                hero_subtitle: "Պրոֆեսիոնալ Shopify ծառայություններ և ստատիկ կայքերի մշակում։ Անհատական մոտեցում և որակյալ արդյունք։",
-                hero_cta_primary: "Կապվել ինձ հետ",
-                services_title: "Իմ Ծառայությունները", services_subtitle: "Լիարժեք լուծումներ Ձեր բիզնեսի թվային աճի համար",
-                service_1_title: "Shopify Ամբողջական Ծառայություններ", service_1_desc: "Խանութի ստեղծումից մինչև վերջնական գործարկում։ Theme, apps, payment և shipping settings։",
-                service_2_title: "GitHub Static Կայքեր", service_2_desc: "Արագ, անվտանգ և անվճար հոսթինգով ստատիկ կայքերի պատրաստում GitHub Pages-ի վրա։",
-                service_3_title: "Product Listing", service_3_desc: "Ապրանքների ճիշտ և SEO-օպտիմիզացված տեղադրում՝ նկարներ, նկարագրություններ և tags։",
-                service_4_title: "Shopify Կայքերի Վերաոխում", service_4_desc: "ատրաստի կայքերի դիզայնի և ֆունկցիոնալության բարելավում՝ conversion rate-ի բարձրացման համար։",
-                contact_title: "Կապ Մեզ Հետ", contact_subtitle: "Լրացրեք ևը կամ կապվեք ուղղակիորեն",
-                contact_heading: "Եկեք քննարկենք Ձեր նախագիծը", contact_desc: "Ունե՞ք հարցեր կամ պատրա՞ստ եք սկսել։ Պատրաստ եմ օգնել Ձեզ յուրաքանչյուր քայլում։",
-                name_label: "Անուն Ազգանուն", phone_label: "Հեռախոս", address_label: "Հասցե", address_value: "ՀՀ, Երևան",
-                form_name: "Անուն *", form_service: "Ծառայություն", form_select: "Ընտրեք առայությունը",
-                form_message: "Հաղորդագրություն *", form_submit: "Ուղարկել Հաղորդագրությունը",
-                footer_rights: "Բոլոր իրավունքները պաշտպանված են։", footer_made: "Ստեղծված է ❤️-ով Հայաստանում"
-            },
-            en: {
-                nav_home: "Home", nav_services: "Services", nav_contact: "Contact",
-                hero_badge: "Shopify & Web Developer",
-                hero_title_1: "I build", hero_title_2: "selling", hero_title_3: "online stores",
-                hero_subtitle: "Professional Shopify services and static website development. Personalized approach and quality results.",
-                hero_cta_primary: "Get in Touch",
-                services_title: "My Services", services_subtitle: "Complete solutions for your business digital growth",
-                service_1_title: "Full Shopify Services", service_1_desc: "From store creation to final launch. Theme, apps, payment and shipping settings.",
-                service_2_title: "GitHub Static Websites", service_2_desc: "Fast, secure and free-hosted static websites built on GitHub Pages.",
-                service_3_title: "Product Listing", service_3_desc: "Accurate and SEO-optimized product uploads with images, descriptions and tags.",
-                service_4_title: "Shopify Store Revamp", service_4_desc: "Improving design and functionality of existing stores to boost conversion rates.",
-                contact_title: "Contact Me", contact_subtitle: "Fill out the form or reach out directly",
-                contact_heading: "Let's discuss your project", contact_desc: "Have questions or ready to start? I'm ready to help you every step of the way.",
-                name_label: "Full Name", phone_label: "Phone", address_label: "Address", address_value: "Yerevan, Armenia",
-                form_name: "Name *", form_service: "Service", form_select: "Select a service",
-                form_message: "Message *", form_submit: "Send Message",
-                footer_rights: "All rights reserved.", footer_made: "Made with ❤️ in Armenia"
-            },
-            ru: {
-                nav_home: "Главная", nav_services: "Услуги", nav_contact: "Контакты",
-                hero_badge: "Shopify & Web Developer",
-                hero_title_1: "Создаю", hero_title_2: "продающие", hero_title_3: "онлайн магазины",
-                hero_subtitle: "Профессиональные услуги Shopify и разработка статических сайтов. Индивидуальный подход и качественный результат.",
-                hero_cta_primary: "Связаться со мной",
-                services_title: "Мои Услуги", services_subtitle: "Полные решения для цифрового роста вашего бизнеса",
-                service_1_title: "Полный спектр услуг Shopify", service_1_desc: "От создания магазина до финального запуска. Тема, приложения, платежи и доставка.",
-                service_2_title: "Статические сайты на GitHub", service_2_desc: "Быстрые, безопасные и бесплатно хостируемые статические сайты на GitHub Pages.",
-                service_3_title: "Размещение товаров", service_3_desc: "Точная и SEO-оптимизированная загрузка товаров с изображениями, описаниями и тегами.",
-                service_4_title: "Редизайн магазинов Shopify", service_4_desc: "Улучшение дизайна и функциональности существующих магазинов для повышения конверсии.",
-                contact_title: "Свяжитесь со мной", contact_subtitle: "Заполните форму или свяжитесь напрямую",
-                contact_heading: "Давайте обсудим ваш проект", contact_desc: "Есть вопросы или готовы начать? Я готов помочь вам на каждом этапе.",
-                name_label: "Имя Фамилия", phone_label: "Телефон", address_label: "Адрес", address_value: "Ереван, Армения",
-                form_name: "Имя *", form_service: "Услуга", form_select: "Выберите услугу",
-                form_message: "Сообщение *", form_submit: "Отправить сообщение",
-                footer_rights: "Все права защищены.", footer_made: "Сделано с ❤️ в Армении"
-            }
-        };
-
-        const langBtns = document.querySelectorAll('.lang-btn');
-        const currentLang = localStorage.getItem('lang') || 'hy';
-
-        function setLanguage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.textContent = translations[lang][key];
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
-            document.documentElement.lang = lang;
-            localStorage.setItem('lang', lang);
-            langBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-        }
+        });
 
-        langBtns.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
-        setLanguage(currentLang);
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        document.querySelector('.contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const lang = localStorage.getItem('lang') || 'hy';
-            const messages = {
-                hy: 'Շնորհակալություն! Ձեր հաղորդագրությունը ուղարկված է։ ենք կկապվենք Ձեզ հետ շուտով։',
-                en: 'Thank you! Your message has been sent. We will contact you soon.',
-                ru: 'Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.'
-            };
-            alert(messages[lang]);
-            e.target.reset();
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
