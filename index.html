@@ -7,12 +7,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>
 Hovik Mkrtchyan | Shopify Developer
 </title>
 
 
+<meta name="description" content="Premium Shopify Developer creating luxury ecommerce experiences and modern websites.">
+
+
+
 <style>
+
 
 *{
 margin:0;
@@ -21,57 +27,91 @@ box-sizing:border-box;
 }
 
 
+
 html{
+
 scroll-behavior:smooth;
+
 }
+
 
 
 body{
 
 background:#050505;
+
 color:#fff;
-font-family:Arial,Helvetica,sans-serif;
+
+font-family:
+"Helvetica Neue",
+Arial,
+sans-serif;
+
+overflow-x:hidden;
 
 }
+
 
 
 a{
+
 text-decoration:none;
+
 color:inherit;
+
 }
+
+
+
+
+
+/* HEADER */
 
 
 header{
 
 position:fixed;
-top:0;
-width:100%;
-z-index:100;
 
-background:rgba(5,5,5,.8);
-backdrop-filter:blur(15px);
+top:0;
+
+width:100%;
+
+z-index:999;
+
+background:
+rgba(5,5,5,.55);
+
+backdrop-filter:blur(20px);
 
 }
+
 
 
 nav{
 
 max-width:1200px;
+
 margin:auto;
 
 padding:25px 40px;
 
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
 
 }
 
 
+
 .logo{
 
 font-size:32px;
-font-weight:bold;
+
+font-weight:700;
+
+letter-spacing:2px;
 
 }
 
@@ -84,20 +124,30 @@ color:#c8a96a;
 
 
 
+
+
 .menu{
 
 display:flex;
-gap:30px;
+
 align-items:center;
 
+gap:30px;
+
 }
+
 
 
 .menu a{
 
 color:#aaa;
 
+font-size:15px;
+
+transition:.3s;
+
 }
+
 
 
 .menu a:hover{
@@ -108,18 +158,23 @@ color:#fff;
 
 
 
+
+
 .lang button{
 
 background:none;
+
 border:1px solid #333;
 
 color:#aaa;
 
 padding:7px 12px;
 
-border-radius:20px;
+border-radius:30px;
 
 cursor:pointer;
+
+margin-left:5px;
 
 }
 
@@ -136,34 +191,131 @@ color:#000;
 
 
 
+/* HERO */
+
+
 .hero{
 
 height:100vh;
 
 display:flex;
-align-items:center;
+
 justify-content:center;
+
+align-items:center;
 
 text-align:center;
 
-padding:20px;
+position:relative;
+
+overflow:hidden;
 
 }
+
+
+
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+width:700px;
+
+height:700px;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(200,169,106,.28),
+
+transparent 65%
+
+);
+
+
+filter:blur(90px);
+
+
+animation:
+lightMove 8s infinite alternate;
+
+
+}
+
+
+
+@keyframes lightMove{
+
+
+from{
+
+transform:translate(-100px,-50px);
+
+}
+
+
+to{
+
+transform:translate(100px,50px);
+
+}
+
+
+}
+
 
 
 
 .hero-content{
 
-max-width:900px;
+position:relative;
+
+z-index:2;
+
+animation:
+showHero 1.3s ease;
 
 }
+
+
+
+
+@keyframes showHero{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(60px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
 
 
 .badge{
 
 display:inline-block;
 
-padding:10px 20px;
+padding:10px 22px;
 
 border:1px solid #333;
 
@@ -171,19 +323,25 @@ border-radius:50px;
 
 color:#aaa;
 
-margin-bottom:30px;
+margin-bottom:35px;
+
+font-size:14px;
 
 }
 
 
 
+
+
 h1{
 
-font-size:clamp(45px,7vw,90px);
+font-size:
+
+clamp(50px,8vw,100px);
 
 line-height:1;
 
-letter-spacing:-3px;
+letter-spacing:-5px;
 
 }
 
@@ -191,25 +349,39 @@ letter-spacing:-3px;
 
 h1 span{
 
-color:#c8a96a;
+background:
+
+linear-gradient(
+90deg,
+#fff,
+#c8a96a
+);
+
+
+-webkit-background-clip:text;
+
+color:transparent;
 
 }
 
 
 
-.hero p{
 
-margin:35px auto;
+.hero-text{
 
-max-width:650px;
+max-width:700px;
 
-color:#999;
+margin:40px auto;
 
-font-size:18px;
+font-size:19px;
 
 line-height:1.7;
 
+color:#999;
+
 }
+
+
 
 
 
@@ -217,7 +389,7 @@ line-height:1.7;
 
 display:inline-block;
 
-padding:16px 35px;
+padding:16px 40px;
 
 border-radius:50px;
 
@@ -225,9 +397,19 @@ background:#c8a96a;
 
 color:#000;
 
-font-weight:bold;
+font-weight:600;
 
 margin:10px;
+
+transition:.4s;
+
+}
+
+
+
+.btn:hover{
+
+transform:translateY(-5px);
 
 }
 
@@ -239,9 +421,14 @@ background:none;
 
 border:1px solid #444;
 
-color:white;
+color:#fff;
 
 }
+
+
+
+
+/* SECTIONS */
 
 
 section{
@@ -256,78 +443,222 @@ padding:120px 40px;
 
 
 
-h2{
+.section-title{
 
-font-size:55px;
+font-size:60px;
 
-margin-bottom:60px;
+letter-spacing:-3px;
+
+margin-bottom:70px;
 
 }
-/* SERVICES + PROJECTS */
 
-.cards{
+
+
+
+/* REVEAL */
+
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(80px);
+
+transition:
+
+1s ease;
+
+}
+
+
+
+.reveal.active{
+
+opacity:1;
+
+transform:none;
+
+}
+/* SERVICES */
+
+.services-grid{
 
 display:grid;
 
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:
+repeat(3,1fr);
 
 gap:25px;
 
 }
 
 
+
 .card{
 
-background:#111;
+background:
+
+linear-gradient(
+145deg,
+#111,
+#090909
+);
+
 
 border:1px solid #222;
 
-border-radius:25px;
+border-radius:30px;
 
-padding:35px;
+padding:40px;
 
-transition:.4s;
+transition:.5s;
 
 }
 
 
+
 .card:hover{
 
-transform:translateY(-10px);
+transform:
+translateY(-12px);
 
 border-color:#c8a96a;
 
 }
 
 
+
 .card h3{
 
-margin-bottom:15px;
+font-size:24px;
 
-font-size:22px;
+margin-bottom:20px;
 
 }
+
 
 
 .card p{
 
 color:#999;
 
-line-height:1.6;
+line-height:1.7;
 
 }
 
 
 
-.projects{
+
+
+
+
+/* PROJECTS */
+
+
+.projects-grid{
 
 display:grid;
 
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:
+repeat(2,1fr);
 
-gap:30px;
+gap:40px;
 
 }
+
+
+
+.project{
+
+background:#0b0b0b;
+
+border-radius:35px;
+
+padding:45px;
+
+border:1px solid #222;
+
+transition:.5s;
+
+}
+
+
+
+.project:hover{
+
+transform:scale(1.02);
+
+border-color:#c8a96a;
+
+}
+
+
+
+.project h3{
+
+font-size:30px;
+
+margin-bottom:20px;
+
+}
+
+
+
+.project p{
+
+color:#999;
+
+line-height:1.7;
+
+margin-bottom:30px;
+
+}
+
+
+
+
+
+
+
+/* CONTACT */
+
+
+.contact-box{
+
+text-align:center;
+
+background:#111;
+
+border-radius:40px;
+
+padding:70px 30px;
+
+border:1px solid #222;
+
+}
+
+
+
+.contact-box h2{
+
+font-size:55px;
+
+margin-bottom:30px;
+
+}
+
+
+
+.contact-box p{
+
+color:#aaa;
+
+line-height:2;
+
+}
+
+
 
 
 
@@ -343,7 +674,14 @@ color:#777;
 
 
 
-@media(max-width:800px){
+
+
+
+/* MOBILE */
+
+
+@media(max-width:900px){
+
 
 .menu a{
 
@@ -352,36 +690,67 @@ display:none;
 }
 
 
-.cards{
+nav{
 
-grid-template-columns:1fr;
-
-}
-
-
-.projects{
-
-grid-template-columns:1fr;
+padding:20px;
 
 }
+
 
 
 section{
 
-padding:80px 20px;
+padding:90px 20px;
 
 }
 
 
-h2{
+
+.services-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.projects-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.section-title{
 
 font-size:40px;
 
 }
 
+
+
+.contact-box h2{
+
+font-size:38px;
+
 }
 
+
+
+h1{
+
+letter-spacing:-2px;
+
+}
+
+
+}
+
+
+
 </style>
+
 
 </head>
 
@@ -398,8 +767,11 @@ font-size:40px;
 
 
 <div class="logo">
+
 HM<span>.</span>
+
 </div>
+
 
 
 
@@ -424,19 +796,24 @@ Contact
 
 <div class="lang">
 
-<button id="en" onclick="changeLanguage('en')">
+
+<button id="en"
+onclick="changeLanguage('en')">
 EN
 </button>
 
 
-<button id="am" onclick="changeLanguage('am')">
+<button id="am"
+onclick="changeLanguage('am')">
 AM
 </button>
 
 
-<button id="ru" onclick="changeLanguage('ru')">
+<button id="ru"
+onclick="changeLanguage('ru')">
 RU
 </button>
+
 
 
 </div>
@@ -454,10 +831,14 @@ RU
 
 
 
+
+
 <section class="hero">
 
 
+
 <div class="hero-content">
+
 
 
 <div class="badge" id="badge">
@@ -465,6 +846,7 @@ RU
 Available for freelance projects
 
 </div>
+
 
 
 
@@ -480,7 +862,8 @@ Web Experiences
 
 
 
-<p id="heroText">
+
+<p class="hero-text" id="heroText">
 
 I create modern Shopify stores and professional websites for brands worldwide.
 
@@ -488,7 +871,8 @@ I create modern Shopify stores and professional websites for brands worldwide.
 
 
 
-<a href="#projects" class="btn" id="projectBtn">
+
+<a class="btn" href="#projects" id="viewBtn">
 
 View Projects
 
@@ -496,11 +880,12 @@ View Projects
 
 
 
-<a href="#contact" class="btn outline" id="contactBtn">
+<a class="btn outline" href="#contact" id="contactBtn">
 
 Contact Me
 
 </a>
+
 
 
 </div>
@@ -515,10 +900,12 @@ Contact Me
 
 
 
+
 <section id="services">
 
 
-<h2 id="servicesTitle">
+
+<h2 class="section-title" id="servicesTitle">
 
 Shopify Services
 
@@ -526,18 +913,18 @@ Shopify Services
 
 
 
-<div class="cards">
+<div class="services-grid">
 
 
 
-<div class="card">
+<div class="card reveal">
 
 <h3 id="s1t">
 Shopify Store Development
 </h3>
 
 <p id="s1p">
-Complete Shopify stores from zero: setup, design and customization.
+Complete Shopify stores from zero with premium design.
 </p>
 
 </div>
@@ -545,14 +932,14 @@ Complete Shopify stores from zero: setup, design and customization.
 
 
 
-<div class="card">
+<div class="card reveal">
 
 <h3 id="s2t">
 Custom Liquid Development
 </h3>
 
 <p id="s2p">
-Custom sections, animations and advanced Shopify features.
+Custom sections, animations and unique Shopify features.
 </p>
 
 </div>
@@ -560,14 +947,14 @@ Custom sections, animations and advanced Shopify features.
 
 
 
-<div class="card">
+<div class="card reveal">
 
 <h3 id="s3t">
-Shopify Theme Customization
+Theme Customization
 </h3>
 
 <p id="s3p">
-Premium theme customization and branding.
+Professional Shopify theme improvements.
 </p>
 
 </div>
@@ -575,14 +962,14 @@ Premium theme customization and branding.
 
 
 
-<div class="card">
+<div class="card reveal">
 
 <h3 id="s4t">
 Store Redesign
 </h3>
 
 <p id="s4p">
-Upgrade old Shopify stores with modern UI.
+Transform old stores into modern experiences.
 </p>
 
 </div>
@@ -590,14 +977,14 @@ Upgrade old Shopify stores with modern UI.
 
 
 
-<div class="card">
+<div class="card reveal">
 
 <h3 id="s5t">
 Speed Optimization
 </h3>
 
 <p id="s5p">
-Improve performance and loading speed.
+Improve performance and user experience.
 </p>
 
 </div>
@@ -605,14 +992,14 @@ Improve performance and loading speed.
 
 
 
-<div class="card">
+<div class="card reveal">
 
 <h3 id="s6t">
 GitHub Websites
 </h3>
 
 <p id="s6p">
-Fast modern websites hosted with GitHub Pages.
+Modern websites hosted with GitHub Pages.
 </p>
 
 </div>
@@ -631,7 +1018,8 @@ Fast modern websites hosted with GitHub Pages.
 <section id="projects">
 
 
-<h2 id="projectsTitle">
+
+<h2 class="section-title" id="projectsTitle">
 
 Featured Projects
 
@@ -639,24 +1027,25 @@ Featured Projects
 
 
 
-<div class="projects">
+
+<div class="projects-grid">
 
 
-<div class="card">
+
+<div class="project reveal">
 
 
 <h3>
-
 Luxury Fragrance Shopify Store
-
 </h3>
 
 
 <p>
 
-Premium Shopify ecommerce project.
+Shopify ecommerce project with premium fragrance branding.
 
 </p>
+
 
 
 <a class="btn"
@@ -674,7 +1063,7 @@ Live Store →
 
 
 
-<div class="card">
+<div class="project reveal">
 
 
 <h3>
@@ -684,11 +1073,13 @@ Men's Fragrance Website
 </h3>
 
 
+
 <p>
 
-HTML, CSS and JavaScript website hosted on GitHub.
+Modern static website created with HTML, CSS and JavaScript.
 
 </p>
+
 
 
 <a class="btn"
@@ -704,38 +1095,28 @@ Live Website →
 
 
 
+
 </div>
 
 
 </section>
-<!-- CONTACT -->
-
 <section id="contact">
+
+<div class="contact-box reveal">
 
 
 <h2 id="contactTitle">
+
 Let's Build Something Amazing
+
 </h2>
-
-
-<div class="card">
-
-
-<h3>
-Hovik Mkrtchyan
-</h3>
 
 
 <p id="contactText">
 
-Shopify Developer & Web Designer
-
-<br><br>
-
-Yerevan, Armenia
-
-<br><br>
-
+Hovik Mkrtchyan<br>
+Shopify Developer & Web Designer<br>
+Yerevan, Armenia<br><br>
 hovmkrtchyan2@gmail.com
 
 </p>
@@ -756,7 +1137,9 @@ Contact Me
 
 
 
+
 <footer>
+
 
 <p id="footerText">
 
@@ -764,7 +1147,9 @@ Contact Me
 
 </p>
 
+
 </footer>
+
 
 
 
@@ -773,57 +1158,80 @@ Contact Me
 <script>
 
 
-const languages = {
+/* LANGUAGE SYSTEM */
+
+
+const translations = {
 
 
 en:{
 
 
 navServices:"Services",
+
 navProjects:"Projects",
+
 navContact:"Contact",
 
+
 badge:"Available for freelance projects",
+
 
 heroTitle:
 `Premium Shopify<br><span>Web Experiences</span>`,
 
+
 heroText:
 "I create modern Shopify stores and professional websites for brands worldwide.",
 
-projectBtn:"View Projects",
+
+viewBtn:"View Projects",
 
 contactBtn:"Contact Me",
 
+
 servicesTitle:"Shopify Services",
 
+
+
 s1t:"Shopify Store Development",
-s1p:"Complete Shopify stores from zero: setup, design and customization.",
+s1p:"Complete Shopify stores from zero with premium design.",
+
 
 s2t:"Custom Liquid Development",
-s2p:"Custom sections, animations and advanced Shopify features.",
+s2p:"Custom sections, animations and unique Shopify features.",
 
-s3t:"Shopify Theme Customization",
-s3p:"Premium theme customization and branding.",
+
+s3t:"Theme Customization",
+s3p:"Professional Shopify theme improvements.",
+
 
 s4t:"Store Redesign",
-s4p:"Upgrade old Shopify stores with modern UI.",
+s4p:"Transform old stores into modern experiences.",
+
 
 s5t:"Speed Optimization",
-s5p:"Improve performance and loading speed.",
+s5p:"Improve performance and user experience.",
+
 
 s6t:"GitHub Websites",
-s6p:"Fast modern websites hosted with GitHub Pages.",
+s6p:"Modern websites hosted with GitHub Pages.",
+
 
 projectsTitle:"Featured Projects",
 
+
 contactTitle:"Let's Build Something Amazing",
+
 
 emailBtn:"Contact Me",
 
+
 footerText:"© 2026 Hovik Mkrtchyan | Shopify Developer"
 
+
 },
+
 
 
 
@@ -849,7 +1257,7 @@ heroText:
 "Կառուցում եմ ժամանակակից Shopify խանութներ և պրոֆեսիոնալ կայքեր բիզնեսների համար։",
 
 
-projectBtn:"Դիտել նախագծերը",
+viewBtn:"Դիտել նախագծերը",
 
 contactBtn:"Կապ հաստատել",
 
@@ -858,22 +1266,27 @@ servicesTitle:"Shopify Ծառայություններ",
 
 
 s1t:"Shopify Խանութների Կառուցում",
-s1p:"Shopify խանութի ամբողջական ստեղծում՝ դիզայն, կարգավորում և անհատականացում։",
+s1p:"Ամբողջական Shopify խանութներ՝ ժամանակակից դիզայնով։",
+
 
 s2t:"Custom Liquid Development",
-s2p:"Անհատական բաժիններ, անիմացիաներ և հատուկ Shopify ֆունկցիաներ։",
+s2p:"Անհատական բաժիններ, անիմացիաներ և ֆունկցիաներ։",
 
-s3t:"Shopify Theme Customization",
-s3p:"Թեմաների փոփոխում և բրենդային դիզայն։",
+
+s3t:"Թեմայի Փոփոխում",
+s3p:"Shopify թեմաների պրոֆեսիոնալ կարգավորում։",
+
 
 s4t:"Խանութի Վերափոխում",
-s4p:"Հին Shopify կայքերի վերափոխում ժամանակակից տեսքով։",
+s4p:"Հին կայքերի դարձնում ժամանակակից։",
+
 
 s5t:"Արագության Օպտիմիզացում",
 s5p:"Կայքի արագության և աշխատանքի բարելավում։",
 
+
 s6t:"GitHub Կայքեր",
-s6p:"Արագ և ժամանակակից կայքեր GitHub Pages-ում։",
+s6p:"Ժամանակակից կայքեր GitHub Pages-ում։",
 
 
 projectsTitle:"Իմ Նախագծերը",
@@ -915,7 +1328,7 @@ heroText:
 "Создаю современные Shopify магазины и профессиональные сайты для бизнеса.",
 
 
-projectBtn:"Смотреть проекты",
+viewBtn:"Смотреть проекты",
 
 contactBtn:"Связаться",
 
@@ -926,17 +1339,22 @@ servicesTitle:"Shopify Услуги",
 s1t:"Создание Shopify магазина",
 s1p:"Полная разработка Shopify магазина с нуля.",
 
-s2t:"Custom Liquid Development",
-s2p:"Уникальные секции, анимации и функции Shopify.",
 
-s3t:"Настройка Shopify темы",
-s3p:"Изменение тем и фирменный дизайн.",
+s2t:"Custom Liquid Development",
+s2p:"Уникальные секции и функции Shopify.",
+
+
+s3t:"Настройка темы",
+s3p:"Профессиональная настройка Shopify темы.",
+
 
 s4t:"Редизайн магазина",
-s4p:"Обновление старых Shopify сайтов.",
+s4p:"Обновление старых магазинов.",
+
 
 s5t:"Оптимизация скорости",
-s5p:"Улучшение скорости и производительности.",
+s5p:"Улучшение скорости сайта.",
+
 
 s6t:"GitHub сайты",
 s6p:"Современные сайты на GitHub Pages.",
@@ -967,7 +1385,7 @@ footerText:"© 2026 Hovik Mkrtchyan | Shopify Developer"
 function changeLanguage(lang){
 
 
-let t = languages[lang];
+let t = translations[lang];
 
 
 Object.keys(t).forEach(key=>{
@@ -986,19 +1404,6 @@ element.innerHTML=t[key];
 });
 
 
-localStorage.setItem("language",lang);
-
-
-setActive(lang);
-
-
-}
-
-
-
-
-function setActive(lang){
-
 
 document.querySelectorAll(".lang button")
 .forEach(btn=>{
@@ -1012,20 +1417,76 @@ document.getElementById(lang)
 .classList.add("active");
 
 
+
 }
 
 
 
 
-let saved =
-localStorage.getItem("language") || "en";
+
+/* ALWAYS OPEN ENGLISH */
 
 
-changeLanguage(saved);
+window.onload=function(){
+
+changeLanguage("en");
+
+};
+
+
+
+
+
+
+
+/* SCROLL ANIMATION */
+
+
+const observer = new IntersectionObserver(
+
+(entries)=>{
+
+
+entries.forEach(entry=>{
+
+
+if(entry.isIntersecting){
+
+
+entry.target.classList.add("active");
+
+
+}
+
+
+});
+
+
+},
+
+{
+
+threshold:.15
+
+}
+
+);
+
+
+
+document.querySelectorAll(".reveal")
+.forEach(el=>{
+
+
+observer.observe(el);
+
+
+});
 
 
 
 </script>
+
 
 
 </body>
