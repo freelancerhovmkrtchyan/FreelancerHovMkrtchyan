@@ -13,11 +13,362 @@ Hovik Mkrtchyan | Shopify Developer
 </title>
 
 
-<meta name="description" content="Hovik Mkrtchyan - Shopify Developer & Web Designer from Yerevan, Armenia.">
+<meta name="description" content="Premium Shopify Developer and Web Designer from Yerevan, Armenia.">
 
 
-<link rel="stylesheet" href="style.css">
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
 
+
+<style>
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+html{
+scroll-behavior:smooth;
+}
+
+
+body{
+
+background:#050505;
+color:white;
+font-family:Arial, Helvetica, sans-serif;
+overflow-x:hidden;
+
+}
+
+
+a{
+
+text-decoration:none;
+color:inherit;
+
+}
+
+
+
+/* HEADER */
+
+
+header{
+
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+
+background:rgba(5,5,5,.65);
+backdrop-filter:blur(15px);
+
+}
+
+
+nav{
+
+max-width:1200px;
+margin:auto;
+
+padding:25px 40px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+
+
+.logo{
+
+font-size:32px;
+font-weight:bold;
+
+letter-spacing:2px;
+
+}
+
+
+.logo span{
+
+color:#c8a96a;
+
+}
+
+
+
+.menu{
+
+display:flex;
+gap:30px;
+align-items:center;
+
+}
+
+
+.menu a{
+
+color:#aaa;
+transition:.3s;
+
+}
+
+
+.menu a:hover{
+
+color:white;
+
+}
+
+
+
+/* LANGUAGE */
+
+
+.lang button{
+
+background:none;
+border:1px solid #333;
+
+color:#aaa;
+
+padding:7px 12px;
+
+border-radius:20px;
+
+cursor:pointer;
+
+}
+
+
+.lang button:hover,
+.lang button.active{
+
+background:#c8a96a;
+color:#000;
+
+}
+
+
+
+
+
+/* HERO */
+
+
+.hero{
+
+height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+padding:20px;
+
+}
+
+
+.hero-content{
+
+max-width:900px;
+
+}
+
+
+.badge{
+
+display:inline-block;
+
+padding:10px 20px;
+
+border:1px solid #333;
+
+border-radius:50px;
+
+color:#aaa;
+
+margin-bottom:30px;
+
+}
+
+
+
+h1{
+
+font-size:clamp(45px,7vw,90px);
+
+line-height:1;
+
+letter-spacing:-3px;
+
+}
+
+
+
+h1 span{
+
+color:#c8a96a;
+
+}
+
+
+
+.hero p{
+
+max-width:650px;
+
+margin:35px auto;
+
+color:#999;
+
+font-size:18px;
+
+line-height:1.7;
+
+}
+
+
+
+
+.btn{
+
+display:inline-block;
+
+padding:16px 35px;
+
+border-radius:50px;
+
+background:#c8a96a;
+
+color:#000;
+
+font-weight:bold;
+
+margin:10px;
+
+transition:.3s;
+
+}
+
+
+
+.btn:hover{
+
+transform:translateY(-5px);
+
+}
+
+
+.outline{
+
+background:none;
+
+border:1px solid #444;
+
+color:white;
+
+}
+
+
+
+
+
+/* SECTION */
+
+
+section{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:120px 40px;
+
+}
+
+
+
+h2{
+
+font-size:55px;
+
+margin-bottom:60px;
+
+}
+
+
+
+
+/* SERVICES */
+
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+}
+
+
+.card{
+
+background:#111;
+
+border:1px solid #222;
+
+border-radius:25px;
+
+padding:35px;
+
+transition:.4s;
+
+}
+
+
+
+.card:hover{
+
+transform:translateY(-10px);
+
+border-color:#c8a96a;
+
+}
+
+
+
+.card h3{
+
+margin-bottom:15px;
+
+font-size:22px;
+
+}
+
+
+.card p{
+
+color:#999;
+
+line-height:1.6;
+
+}
+
+
+</style>
 
 </head>
 
@@ -40,13 +391,32 @@ HM<span>.</span>
 Services
 </a>
 
+
 <a href="#projects">
 Projects
 </a>
 
+
 <a href="#contact">
 Contact
 </a>
+
+
+<div class="lang">
+
+<button onclick="changeLang('en')" id="en">
+EN
+</button>
+
+<button onclick="changeLang('am')" id="am">
+AM
+</button>
+
+<button onclick="changeLang('ru')" id="ru">
+RU
+</button>
+
+</div>
 
 
 </div>
@@ -58,24 +428,21 @@ Contact
 
 
 
-
-
 <section class="hero">
 
 
 <div class="hero-content">
 
 
-<p class="badge">
+<div class="badge">
 Available for freelance projects
-</p>
+</div>
 
 
-<h1>
+<h1 id="title">
 
 Premium Shopify
 <br>
-
 <span>
 Web Experiences
 </span>
@@ -84,41 +451,28 @@ Web Experiences
 
 
 
-<p>
+<p id="description">
 
-I create modern Shopify stores and professional websites for brands and businesses worldwide.
+I create modern Shopify stores and professional websites for brands worldwide.
 
 </p>
 
 
 
-<div class="buttons">
-
-
 <a href="#projects" class="btn">
-
 View Projects
-
 </a>
 
 
 <a href="#contact" class="btn outline">
-
 Contact Me
-
 </a>
-
-
-</div>
 
 
 </div>
 
 
 </section>
-
-
-
 
 
 
@@ -142,11 +496,10 @@ Shopify Store Development
 </h3>
 
 <p>
-Complete Shopify stores from zero: setup, design and customization.
+Complete Shopify stores from zero: design, setup and customization.
 </p>
 
 </div>
-
 
 
 <div class="card">
@@ -156,17 +509,16 @@ Custom Liquid Development
 </h3>
 
 <p>
-Custom sections, animations and unique Shopify features.
+Custom sections, animations and advanced Shopify features.
 </p>
 
 </div>
 
 
-
 <div class="card">
 
 <h3>
-Shopify Theme Customization
+Theme Customization
 </h3>
 
 <p>
@@ -176,33 +528,30 @@ Premium Shopify theme modifications and branding.
 </div>
 
 
-
 <div class="card">
 
 <h3>
-Shopify Speed Optimization
+Store Redesign
 </h3>
 
 <p>
-Improve loading speed and user experience.
+Upgrade old Shopify stores with modern UI.
 </p>
 
 </div>
 
 
-
 <div class="card">
 
 <h3>
-Shopify Bug Fixes
+Speed Optimization
 </h3>
 
 <p>
-Fix theme issues and Liquid problems.
+Improve performance and loading speed.
 </p>
 
 </div>
-
 
 
 <div class="card">
@@ -220,15 +569,8 @@ Fast modern websites hosted with GitHub Pages.
 
 </div>
 
-
 </section>
-
-
-
-
-
-
-
+<!-- PROJECTS -->
 
 <section id="projects">
 
@@ -239,11 +581,10 @@ Featured Projects
 
 
 
-<div class="projects">
+<div class="cards">
 
 
-<div class="project">
-
+<div class="card">
 
 <h3>
 Luxury Fragrance Shopify Store
@@ -251,13 +592,16 @@ Luxury Fragrance Shopify Store
 
 
 <p>
-Premium Shopify ecommerce project.
+Premium Shopify ecommerce store with modern design and product experience.
 </p>
 
 
-<a href="https://hovik-mkrtchyan.myshopify.com/" target="_blank">
+<a 
+class="btn"
+href="https://hovik-mkrtchyan.myshopify.com/"
+target="_blank">
 
-View Store →
+Live Store →
 
 </a>
 
@@ -267,8 +611,7 @@ View Store →
 
 
 
-<div class="project">
-
+<div class="card">
 
 <h3>
 Men's Fragrance Website
@@ -276,18 +619,23 @@ Men's Fragrance Website
 
 
 <p>
-Static website built with HTML, CSS and JavaScript.
+Modern static website created with HTML, CSS and JavaScript.
 </p>
 
 
-<a href="https://specialfragrance.github.io/Menfragrnace/" target="_blank">
 
-View Website →
+<a 
+class="btn"
+href="https://specialfragrance.github.io/Menfragrnace/"
+target="_blank">
+
+Live Website →
 
 </a>
 
 
 </div>
+
 
 
 </div>
@@ -299,7 +647,7 @@ View Website →
 
 
 
-
+<!-- CONTACT -->
 
 
 <section id="contact">
@@ -310,31 +658,44 @@ Let's Build Something Amazing
 </h2>
 
 
-<p>
 
+<div class="card">
+
+
+<h3>
 Hovik Mkrtchyan
+</h3>
 
-<br>
+
+<p>
 
 Shopify Developer & Web Designer
 
-<br>
+<br><br>
 
 Yerevan, Armenia
 
-</p>
-
-
-
-<p>
-
-Email:
-
-<br>
+<br><br>
 
 hovmkrtchyan2@gmail.com
 
 </p>
+
+
+<br>
+
+
+<a 
+class="btn"
+href="mailto:hovmkrtchyan2@gmail.com">
+
+Contact Me
+
+</a>
+
+
+
+</div>
 
 
 
@@ -345,19 +706,147 @@ hovmkrtchyan2@gmail.com
 
 
 
+
 <footer>
+
 
 <p>
 
-© 2026 Hovik Mkrtchyan
+© 2026 Hovik Mkrtchyan | Shopify Developer
 
 </p>
+
 
 </footer>
 
 
 
-<script src="script.js"></script>
+
+
+
+<script>
+
+
+const translations = {
+
+
+en:{
+
+
+title:
+`Premium Shopify<br><span>Web Experiences</span>`,
+
+
+description:
+"I create modern Shopify stores and professional websites for brands worldwide."
+
+},
+
+
+
+am:{
+
+
+title:
+`Պրեմիում Shopify<br><span>Վեբ լուծումներ</span>`,
+
+
+description:
+"Կառուցում եմ ժամանակակից Shopify խանութներ և պրոֆեսիոնալ կայքեր բիզնեսների համար։"
+
+},
+
+
+
+ru:{
+
+
+title:
+`Премиальные Shopify<br><span>Веб решения</span>`,
+
+
+description:
+"Создаю современные Shopify магазины и сайты для бизнеса."
+
+}
+
+
+
+};
+
+
+
+
+
+
+function changeLang(lang){
+
+
+document
+.getElementById("title")
+.innerHTML =
+translations[lang].title;
+
+
+
+document
+.getElementById("description")
+.innerHTML =
+translations[lang].description;
+
+
+
+localStorage.setItem(
+"language",
+lang
+);
+
+
+
+updateButton(lang);
+
+
+}
+
+
+
+
+
+function updateButton(lang){
+
+
+document
+.querySelectorAll(".lang button")
+.forEach(btn=>{
+
+btn.classList.remove("active");
+
+});
+
+
+
+document
+.getElementById(lang)
+.classList.add("active");
+
+
+}
+
+
+
+
+
+let savedLanguage =
+localStorage.getItem("language") || "en";
+
+
+
+changeLang(savedLanguage);
+
+
+
+</script>
+
 
 
 </body>
