@@ -1,365 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hovik Mkrtchyan | Shopify Developer</title>
-    
-    <!-- SEO & Social Sharing -->
-    <meta name="description" content="Professional Shopify Developer from Yerevan. I build modern, fast, and high-converting stores.">
-    <meta property="og:title" content="Hovik Mkrtchyan | Shopify Developer">
-    <meta property="og:description" content="I build modern, fast, and high-converting stores on Shopify. The key to your business's digital success.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200">
-    <meta property="og:url" content="https://hovik-mkrtchyan.myshopify.com/">
-    <meta name="theme-color" content="#667eea">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #667eea; --secondary: #764ba2; --dark: #0a0a0a; --light: #ffffff; --gray: #a0a0a0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark); color: var(--light); line-height: 1.6; overflow-x: hidden; }
-        
-        /* Background Animation */
-        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0a0a0a); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
-        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        
-        /* Particles */
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
-        .particle { position: absolute; width: 4px; height: 4px; background: rgba(102, 126, 234, 0.6); border-radius: 50%; animation: float 20s infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10%, 90% { opacity: 1; } 100% { transform: translateY(-100vh) translateX(100px); opacity: 0; } }
+<meta charset="UTF-8">
 
-        /* Header */
-        header { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); animation: slideDown 0.8s ease; }
-        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .logo { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; cursor: pointer; }
-        
-        nav { display: flex; align-items: center; gap: 20px; }
-        nav a { color: var(--gray); text-decoration: none; font-weight: 500; transition: all 0.3s; position: relative; font-size: 15px; }
-        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s; }
-        nav a:hover { color: var(--light); }
-        nav a:hover::after { width: 100%; }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .lang-switch { display: flex; gap: 5px; margin-left: 20px; }
-        .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--gray); padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.3s; }
-        .lang-btn:hover, .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Hero Section */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; }
-        .hero-content { animation: fadeInUp 1s ease; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        .hero-content h1 { font-size: 64px; font-weight: 800; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-content .subtitle { font-size: 20px; color: var(--primary); font-weight: 600; margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; }
-        .hero-content p { font-size: 18px; color: var(--gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+<title>
+Hovik Mkrtchyan | Shopify Developer
+</title>
 
-        /* Buttons */
-        .btn { padding: 14px 35px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; display: inline-block; border: none; cursor: pointer; font-size: 15px; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: var(--light); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6); }
-        .btn-secondary { background: transparent; color: var(--light); border: 2px solid rgba(255, 255, 255, 0.3); margin-left: 15px; }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--light); transform: translateY(-5px); }
 
-        /* Sections */
-        .section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 40px; font-weight: 800; margin-bottom: 60px; background: linear-gradient(135deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        
-        /* About */
-        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-text p { color: var(--gray); font-size: 16px; margin-bottom: 20px; line-height: 1.8; }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        .info-item { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .info-label { color: var(--gray); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-        .info-value { color: var(--light); font-size: 16px; font-weight: 600; }
-        .info-value a { color: var(--light); text-decoration: none; transition: color 0.3s; }
-        .info-value a:hover { color: var(--primary); }
+<meta name="description" content="Premium Shopify Developer from Yerevan, Armenia. Shopify stores, Custom Liquid development and modern websites.">
 
-        /* Cards Grid */
-        .services-grid, .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2); }
-        .card-icon { font-size: 40px; margin-bottom: 15px; display: block; }
-        .card h3 { font-size: 20px; margin-bottom: 10px; color: var(--light); }
-        .card p { color: var(--gray); font-size: 14px; line-height: 1.7; }
 
-        /* Project Specifics */
-        .project-card { padding: 0; }
-        .project-card.highlight { border: 2px solid var(--primary); background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); }
-        .project-image { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s; }
-        .project-card:hover .project-image { transform: scale(1.05); }
-        .project-content { padding: 25px; }
-        .project-link { color: var(--primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; margin-top: 15px; }
-        .project-link:hover { gap: 15px; color: var(--secondary); }
-        
-        .featured-badge { position: absolute; top: 15px; right: 15px; background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+<meta name="keywords" content="Shopify Developer, Shopify Expert, Shopify Liquid, Web Development">
 
-        /* Contact */
-        .contact-content { text-align: center; max-width: 600px; margin: 0 auto; }
-        .contact-details { display: flex; flex-direction: column; gap: 15px; margin: 30px 0; font-size: 18px; }
-        .contact-item { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--light); }
-        .contact-item span { color: var(--primary); }
-        .contact-item a { color: var(--light); text-decoration: none; transition: color 0.3s; }
-        .contact-item a:hover { color: var(--primary); }
-        
-        .social-links { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-        .social-link { background: rgba(255, 255, 255, 0.05); color: var(--light); padding: 12px 25px; border-radius: 50px; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; }
-        .social-link:hover { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-color: transparent; transform: translateY(-3px); }
 
-        footer { background: rgba(0, 0, 0, 0.5); padding: 30px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 50px; }
-        footer p { color: #666; font-size: 14px; }
+<meta name="author" content="Hovik Mkrtchyan">
 
-        /* Animations */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 768px) {
-            nav a:not(.lang-btn) { display: none; }
-            .hero-content h1 { font-size: 40px; }
-            .about-content { grid-template-columns: 1fr; }
-            .info-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 32px; }
-            .btn-secondary { margin-left: 0; margin-top: 15px; display: block; width: 100%; }
-        }
-    </style>
+<meta property="og:title" content="Hovik Mkrtchyan | Shopify Developer">
+
+<meta property="og:description" content="Premium Shopify stores and modern web experiences for brands worldwide.">
+
+<meta property="og:type" content="website">
+
+<meta property="og:image" content="assets/preview.jpg">
+
+
+<link rel="icon" href="assets/favicon.png">
+
+
+<link rel="stylesheet" href="style.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
 </head>
+
+
+
 <body>
-    <div class="bg-animation"></div>
-    <div class="particles" id="particles"></div>
 
-    <header>
-        <div class="logo" onclick="window.scrollTo(0,0)">Hovik Mkrtchyan</div>
-        <nav>
-            <a href="#home" data-lang-key="home">Home</a>
-            <a href="#about" data-lang-key="about">About</a>
-            <a href="#services" data-lang-key="services">Services</a>
-            <a href="#projects" data-lang-key="projects">Projects</a>
-            <a href="#contact" data-lang-key="contact">Contact</a>
-            <div class="lang-switch">
-                <button class="lang-btn" data-lang="hy" onclick="setLang('hy')">HY</button>
-                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
-            </div>
-        </nav>
-    </header>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="subtitle" data-lang-key="hero_subtitle">SHOPIFY DEVELOPER</div>
-            <h1 data-lang-key="hero_title">Hovik Mkrtchyan</h1>
-            <p data-lang-key="hero_desc">I build modern, fast, and high-converting stores on Shopify. The key to your business's digital success.</p>
-            <div>
-                <a href="#projects" class="btn btn-primary" data-lang-key="btn_works">View My Work</a>
-                <a href="#contact" class="btn btn-secondary" data-lang-key="btn_contact">Contact Me</a>
-            </div>
-        </div>
-    </section>
+<div class="cursor"></div>
 
-    <section class="section" id="about">
-        <div class="about-content">
-            <div class="about-text fade-in">
-                <h2 class="section-title" style="text-align: left; margin-bottom: 20px;" data-lang-key="about_title">About Me</h2>
-                <p data-lang-key="about_p1">I am a professional Shopify developer from Yerevan. My goal is to help businesses achieve maximum results in e-commerce by offering both standard and fully custom solutions.</p>
-                <div class="info-grid">
-                    <div class="info-item"><div class="info-label" data-lang-key="age">Age</div><div class="info-value" data-lang-key="age_val">26 years old</div></div>
-                    <div class="info-item"><div class="info-label" data-lang-key="loc">Location</div><div class="info-value" data-lang-key="loc_val">Yerevan, Armenia</div></div>
-                    <div class="info-item"><div class="info-label" data-lang-key="phone">Phone</div><div class="info-value"><a href="tel:+37493041217">+374 93 04 12 17</a></div></div>
-                    <div class="info-item"><div class="info-label" data-lang-key="email">Email</div><div class="info-value"><a href="mailto:hmkrtchyan323@gmail.com">hmkrtchyan323@gmail.com</a></div></div>
-                </div>
-            </div>
-            <div class="fade-in" style="text-align: center;">
-                <!-- Replace with your actual photo URL if available -->
-                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500" alt="Hovik Mkrtchyan" style="width: 100%; max-width: 350px; border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);">
-            </div>
-        </div>
-    </section>
 
-    <section class="section" id="services" style="background: rgba(0,0,0,0.3); max-width: 100%;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title fade-in" data-lang-key="services_title">My Services</h2>
-            <div class="services-grid">
-                <div class="card fade-in"><span class="card-icon">🛍️</span><h3 data-lang-key="s1_title">Full Shopify Services</h3><p data-lang-key="s1_desc">Store creation from scratch, theme installation, product upload, and configuration.</p></div>
-                <div class="card fade-in"><span class="card-icon">⚙️</span><h3 data-lang-key="s2_title">Custom Shopify Solutions</h3><p data-lang-key="s2_desc">Liquid coding, adding custom functionality, and extending standard capabilities.</p></div>
-                <div class="card fade-in"><span class="card-icon">💻</span><h3 data-lang-key="s3_title">GitHub Management</h3><p data-lang-key="s3_desc">Version control, collaboration, and secure website deployment.</p></div>
-                <div class="card fade-in"><span class="card-icon">🚀</span><h3 data-lang-key="s4_title">Landing Page Creation</h3><p data-lang-key="s4_desc">Design and development of high-converting landing pages for marketing campaigns.</p></div>
-                <div class="card fade-in"><span class="card-icon">🌍</span><h3 data-lang-key="s5_title">Multilingual Translation</h3><p data-lang-key="s5_desc">Full multilingual (HY/EN/RU) website implementation and localization setup.</p></div>
-            </div>
-        </div>
-    </section>
 
-    <section class="section" id="projects">
-        <h2 class="section-title fade-in" data-lang-key="projects_title">My Projects</h2>
-        <div class="projects-grid">
-            
-            <!-- Project 1: Main Store -->
-            <div class="card project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="Main Store" class="project-image">
-                <div class="project-content">
-                    <h3 data-lang-key="p1_title">🏆 Main Shopify Store</h3>
-                    <p data-lang-key="p1_desc">My personal project applying Shopify best practices, custom design, and optimization.</p>
-                    <a href="https://hovik-mkrtchyan.myshopify.com/" target="_blank" class="project-link" data-lang-key="p1_link">View Live Store →</a>
-                </div>
-            </div>
+<header>
 
-            <!-- Project 2: Custom Landing Page (FEATURED) -->
-            <div class="card project-card highlight fade-in">
-                <div class="featured-badge">FEATURED</div>
-                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600" alt="Custom Landing Page" class="project-image">
-                <div class="project-content">
-                    <h3 data-lang-key="p2_title">🚀 Custom Landing Page</h3>
-                    <p data-lang-key="p2_desc">A fully customized, high-converting landing page built with Shopify Custom Liquid, featuring responsive design, smooth animations, and optimized UI/UX.</p>
-                    <a href="https://hovik-mkrtchyan.myshopify.com/pages/lp" target="_blank" class="project-link" data-lang-key="p2_link">View Landing Page →</a>
-                </div>
-            </div>
+<nav>
 
-            <!-- Project 3: UI Components -->
-            <div class="card project-card fade-in">
-                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600" alt="Custom UI" class="project-image">
-                <div class="project-content">
-                    <h3 data-lang-key="p3_title">🎨 Custom UI Components</h3>
-                    <p data-lang-key="p3_desc">Development of custom, animated, and multilingual UI components (banners, cards, modals) using pure CSS and Liquid.</p>
-                    <a href="https://hovik-mkrtchyan.myshopify.com/" target="_blank" class="project-link" data-lang-key="p3_link">View Examples →</a>
-                </div>
-            </div>
 
-        </div>
-    </section>
+<div class="logo">
 
-    <section class="section" id="contact">
-        <div class="contact-content fade-in">
-            <h2 class="section-title" data-lang-key="contact_title">Get In Touch</h2>
-            <p data-lang-key="contact_desc">Ready to discuss your project and help you build the ideal Shopify store.</p>
-            <div class="contact-details">
-                <div class="contact-item"><span>📞</span> <a href="tel:+37493041217">+374 93 04 12 17</a></div>
-                <div class="contact-item"><span>✉️</span> <a href="mailto:hmkrtchyan323@gmail.com">hmkrtchyan323@gmail.com</a></div>
-                <div class="contact-item"><span>📍</span> <span data-lang-key="loc_val">Yerevan, Armenia</span></div>
-            </div>
-            <div class="social-links">
-                <a href="mailto:hmkrtchyan323@gmail.com" class="social-link">Email Me</a>
-                <a href="https://github.com/" class="social-link" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/" class="social-link" target="_blank">LinkedIn</a>
-            </div>
-        </div>
-    </section>
+HM<span>.</span>
 
-    <footer>
-        <p data-lang-key="footer">© 2026 Hovik Mkrtchyan | Shopify Developer. All rights reserved.</p>
-    </footer>
+</div>
 
-    <script>
-        const translations = {
-            hy: {
-                home: "Գլխավոր", about: "Իմ մասին", services: "Ծառայություններ", projects: "Նախագծեր", contact: "Կապ",
-                hero_subtitle: "SHOPIFY ՄՇԱԿՈՂ", hero_title: "Հովիկ Մկրտչյան",
-                hero_desc: "Ստեղծում եմ ժամանակակից, արագ և վաճառքը խթանող խանութներ Shopify-ի միջոցով։ Քո բիզնեսի թվային հաջողության գրավականը։",
-                btn_works: "Դիտել Իմ Աշխատանքը", btn_contact: "Կապնվել Ինձ Հետ",
-                about_title: "Իմ մասին",
-                about_p1: "Ես պրոֆեսիոնալ Shopify մշակող եմ Երևանից։ Իմ նպատակն է օգնել բիզնեսներին հասնել առավելագույն արդյունքների առցանց առևտրի ոլորտում՝ առաջարկելով ինչպես ստանդարտ, այնպես էլ լիովին անհատականացված լուծումներ։",
-                age: "Տարիք", age_val: "26 տարեկան", loc: "Գտնվելու վայր", loc_val: "Երևան, Հայաստան", phone: "Հեռախոս", email: "Էլ. հասցե",
-                services_title: "Իմ Ծառայությունները",
-                s1_title: "Shopify Ամբողջական Ծառայություններ", s1_desc: "Խանութի զրոյից ստեղծում, թեմաների տեղադրում, ապրանքների բեռնում և կարգավորումներ։",
-                s2_title: "Custom Shopify Լուծումներ", s2_desc: "Liquid կոդի գրում, հատուկ ֆունկցիոնալության ավելացում և ստանդարտ հնարավորությունների ընդլայնում։",
-                s3_title: "GitHub Կառավարում", s3_desc: "Կոդի տարբերակների կառավարում, համագործակցություն և կայքի անվտանգ դեպլոյմենտ։",
-                s4_title: "Landing Page-ների Ստեղծում", s4_desc: "Բարձր կոնվերսիայով վայրէջքի էջերի դիզայն և մշակում՝ մարքեթինգային արշավների համար։",
-                s5_title: "Բազմալեզու Թարգմանություն", s5_desc: "Կայքերի լիարժեք բազմալեզու (HY/EN/RU) դարձնելու հնարավորություն և լոկալիզացիայի կարգավորում։",
-                projects_title: "Իմ Նախագծերը",
-                p1_title: "🏆 Հիմնական Shopify Խանութ", p1_desc: "Իմ անձնական նախագիծը, որտեղ կիրառված են Shopify-ի լավագույն պրակտիկաները, custom դիզայն և օպտիմալացում։", p1_link: "Դիտել Կենդանի Խանութը →",
-                p2_title: "🚀 Custom Landing Page", p2_desc: "Ամբողջությամբ անհատականացված, բարձր կոնվերսիայով վայրէջքի էջ՝ ստեղծված Shopify Custom Liquid-ով, ադապտիվ դիզայնով, հարթ անիմացիաներով և օպտիմալացված UI/UX-ով։", p2_link: "Դիտել Landing Page-ը →",
-                p3_title: "🎨 Custom UI Կոմպոնենտներ", p3_desc: "Մաքուր CSS-ի և Liquid-ի օգտագործմամբ անիմացված, բազմալեզու UI կոմպոնենտների (բաներներ, քարտեր, մոդալներ) մշակում։", p3_link: "Դիտել Օրինակները →",
-                contact_title: "Կապնվենք", contact_desc: "Պատրաստ եմ քննարկել քո նախագիծը և օգնել ստեղծել իդեալական խանութ Shopify-ում։",
-                footer: "© 2026 Հովիկ Մկրտչյան | Shopify Developer. Բոլոր իրավունքները պաշտպանված են:"
-            },
-            en: {
-                home: "Home", about: "About", services: "Services", projects: "Projects", contact: "Contact",
-                hero_subtitle: "SHOPIFY DEVELOPER", hero_title: "Hovik Mkrtchyan",
-                hero_desc: "I build modern, fast, and high-converting stores on Shopify. The key to your business's digital success.",
-                btn_works: "View My Work", btn_contact: "Contact Me",
-                about_title: "About Me",
-                about_p1: "I am a professional Shopify developer from Yerevan. My goal is to help businesses achieve maximum results in e-commerce by offering both standard and fully custom solutions.",
-                age: "Age", age_val: "26 years old", loc: "Location", loc_val: "Yerevan, Armenia", phone: "Phone", email: "Email",
-                services_title: "My Services",
-                s1_title: "Full Shopify Services", s1_desc: "Store creation from scratch, theme installation, product upload, and configuration.",
-                s2_title: "Custom Shopify Solutions", s2_desc: "Liquid coding, adding custom functionality, and extending standard capabilities.",
-                s3_title: "GitHub Management", s3_desc: "Version control, collaboration, and secure website deployment.",
-                s4_title: "Landing Page Creation", s4_desc: "Design and development of high-converting landing pages for marketing campaigns.",
-                s5_title: "Multilingual Translation", s5_desc: "Full multilingual (HY/EN/RU) website implementation and localization setup.",
-                projects_title: "My Projects",
-                p1_title: "🏆 Main Shopify Store", p1_desc: "My personal project applying Shopify best practices, custom design, and optimization.", p1_link: "View Live Store →",
-                p2_title: "🚀 Custom Landing Page", p2_desc: "A fully customized, high-converting landing page built with Shopify Custom Liquid, featuring responsive design, smooth animations, and optimized UI/UX.", p2_link: "View Landing Page →",
-                p3_title: "🎨 Custom UI Components", p3_desc: "Development of custom, animated, and multilingual UI components (banners, cards, modals) using pure CSS and Liquid.", p3_link: "View Examples →",
-                contact_title: "Get In Touch", contact_desc: "Ready to discuss your project and help you build the ideal Shopify store.",
-                footer: "© 2026 Hovik Mkrtchyan | Shopify Developer. All rights reserved."
-            },
-            ru: {
-                home: "Главная", about: "Обо мне", services: "Услуги", projects: "Проекты", contact: "Контакты",
-                hero_subtitle: "SHOPIFY РАЗРАБОТЧИК", hero_title: "Овик Мкртчян",
-                hero_desc: "Я создаю современные, быстрые и высококонверсионные магазины на Shopify. Ключ к цифровому успеху вашего бизнеса.",
-                btn_works: "Посмотреть работы", btn_contact: "Связаться со мной",
-                about_title: "Обо мне",
-                about_p1: "Я профессиональный Shopify разработчик из Еревана. Моя цель — помочь бизнесу достичь максимальных результатов в электронной коммерции, предлагая как стандартные, так и полностью индивидуальные решения.",
-                age: "Возраст", age_val: "26 лет", loc: "Местоположение", loc_val: "Ереван, Армения", phone: "Телефон", email: "Email",
-                services_title: "Мои Услуги",
-                s1_title: "Полный спектр услуг Shopify", s1_desc: "Создание магазина с нуля, установка тем, загрузка товаров и настройка.",
-                s2_title: "Индивидуальные решения Shopify", s2_desc: "Написание кода на Liquid, добавление кастомного функционала и расширение стандартных возможностей.",
-                s3_title: "Управление GitHub", s3_desc: "Контроль версий кода, совместная работа и безопасный деплой сайта.",
-                s4_title: "Создание Landing Page", s4_desc: "Дизайн и разработка высококонверсионных посадочных страниц для маркетинговых кампаний.",
-                s5_title: "Многоязычный перевод", s5_desc: "Полная реализация многоязычного сайта (HY/EN/RU) и настройка локализации.",
-                projects_title: "Мои Проекты",
-                p1_title: "🏆 Основной магазин Shopify", p1_desc: "Мой личный проект, применяющий лучшие практики Shopify, кастомный дизайн и оптимизацию.", p1_link: "Посмотреть живой магазин →",
-                p2_title: "🚀 Кастомный Landing Page", p2_desc: "Полностью настраиваемая, высококонверсионная посадочная страница, созданная на Shopify Custom Liquid, с адаптивным дизайном, плавной анимацией и оптимизированным UI/UX.", p2_link: "Посмотреть Landing Page →",
-                p3_title: "🎨 Кастомные UI Компоненты", p3_desc: "Разработка пользовательских, анимированных и многоязычных UI-компонентов (баннеры, карточки, модальные окна) с использованием чистого CSS и Liquid.", p3_link: "Посмотреть примеры →",
-                contact_title: "Связаться", contact_desc: "Готов обсудить ваш проект и помочь создать идеальный магазин на Shopify.",
-                footer: "© 2026 Овик Мкртчян | Shopify Developer. Все права защищены."
-            }
-        };
 
-        function setLang(lang) {
-            document.querySelectorAll('[data-lang-key]').forEach(el => {
-                const key = el.getAttribute('data-lang-key');
-                if (translations[lang][key]) {
-                    // Check if it's an input or regular element
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translations[lang][key];
-                    } else {
-                        el.textContent = translations[lang][key];
-                    }
-                }
-            });
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                }
-            });
-            document.documentElement.lang = lang;
-        }
 
-        // Set default language
-        setLang('en');
+<div class="nav-links">
 
-        // Create Particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+<a href="#services" data-i18n="navServices">
+Services
+</a>
 
-        // Intersection Observer for Fade-in
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
+<a href="#projects" data-i18n="navProjects">
+Projects
+</a>
+
+
+<a href="#contact" data-i18n="navContact">
+Contact
+</a>
+
+
+
+<div class="languages">
+
+
+<button id="en" onclick="changeLanguage('en')">
+EN
+</button>
+
+
+<button id="am" onclick="changeLanguage('am')">
+AM
+</button>
+
+
+<button id="ru" onclick="changeLanguage('ru')">
+RU
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</nav>
+
+
+</header>
+
+
+
+
+
+<section class="hero">
+
+
+<div class="hero-content reveal">
+
+
+<div class="badge">
+
+Available for freelance projects
+
+</div>
+
+
+
+<h1 data-i18n="heroTitle">
+
+Premium Shopify
+<br>
+
+<span>
+Web Experiences
+</span>
+
+</h1>
+
+
+
+<p data-i18n="heroText">
+
+I create modern Shopify stores and high-performance websites for brands worldwide.
+
+</p>
+
+
+
+<div class="buttons">
+
+
+<a href="#projects" class="btn primary">
+View Projects
+</a>
+
+
+<a href="#contact" class="btn secondary">
+Contact Me
+</a>
+
+
+</div>
+
+
+</div>
+
+
+<div class="hero-glow"></div>
+
+
+</section>
+
+
+
+
+
+
+<section id="services" class="section">
+
+
+<h2 class="title reveal" data-i18n="servicesTitle">
+
+Shopify Services
+
+</h2>
+
+
+
+<div class="services-grid">
+
+
+
+<div class="card reveal">
+
+<h3>
+Shopify Store Development
+</h3>
+
+<p>
+Complete Shopify stores from zero. Setup, design, products, collections and customization.
+</p>
+
+</div>
+
+
+
+
+<div class="card reveal">
+
+<h3>
+Shopify Theme Customization
+</h3>
+
+<p>
+Customize Shopify themes like Dawn with premium layouts and branding.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<h3>
+Custom Liquid Development
+</h3>
+
+<p>
+Custom sections, animations, unique blocks and advanced Shopify features.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<h3>
+Shopify Redesign
+</h3>
+
+<p>
+Transform old stores into modern, premium and conversion-focused experiences.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<h3>
+Shopify Speed Optimization
+</h3>
+
+<p>
+Improve loading speed, performance and customer experience.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<h3>
+Shopify Bug Fixes
+</h3>
+
+<p>
+Fix Liquid errors, theme issues and technical problems.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<h3>
+Shopify SEO Setup
+</h3>
+
+<p>
+Improve structure, metadata and search visibility.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<h3>
+Shopify App Integration
+</h3>
+
+<p>
+Reviews, marketing tools, analytics and conversion apps.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<h3>
+GitHub Websites
+</h3>
+
+<p>
+Fast, secure and modern websites hosted with GitHub Pages.
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="projects" class="section">
+
+
+<h2 class="title reveal">
+
+Featured Projects
+
+</h2>
+
+
+
+
+<div class="projects">
+
+
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+SHOPIFY
+
+</div>
+
+
+
+<h3>
+Luxury Fragrance Shopify Store
+</h3>
+
+
+<p>
+Premium Shopify ecommerce store with modern design and product experience.
+</p>
+
+
+
+<a class="btn primary"
+href="https://hovik-mkrtchyan.myshopify.com/"
+target="_blank">
+
+Live Store →
+
+</a>
+
+
+</div>
+
+
+
+
+
+<div class="project reveal">
+
+
+<div class="project-image">
+
+GITHUB
+
+</div>
+
+
+
+<h3>
+Men's Fragrance Website
+</h3>
+
+
+<p>
+Modern static website built with HTML, CSS and JavaScript.
+</p>
+
+
+
+<a class="btn primary"
+href="https://specialfragrance.github.io/Menfragrnace/"
+target="_blank">
+
+Live Website →
+
+</a>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section id="contact" class="contact section reveal">
+
+
+<h2>
+Let's Build Something Amazing
+</h2>
+
+
+
+<p>
+
+Hovik Mkrtchyan
+
+<br>
+
+Shopify Developer & Web Designer
+
+<br>
+
+Yerevan, Armenia
+
+</p>
+
+
+
+<p>
+
+✉️ hovmkrtchyan2@gmail.com
+
+</p>
+
+
+
+<a class="btn primary"
+href="mailto:hovmkrtchyan2@gmail.com">
+
+Contact Me
+
+</a>
+
+
+
+</section>
+
+
+
+
+
+
+
+<footer>
+
+<p>
+© 2026 Hovik Mkrtchyan | Shopify Developer
+</p>
+
+</footer>
+
+
+
+
+<script src="translations.js"></script>
+
+<script src="script.js"></script>
+
+
 </body>
+
 </html>
