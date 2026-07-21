@@ -7,21 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>
 Hovik Mkrtchyan | Shopify Developer
 </title>
 
 
-<meta name="description" content="Premium Shopify Developer and Web Designer from Yerevan, Armenia.">
-
-
-<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
-
-
 <style>
-
-/* RESET */
 
 *{
 margin:0;
@@ -38,23 +29,16 @@ scroll-behavior:smooth;
 body{
 
 background:#050505;
-color:white;
-font-family:Arial, Helvetica, sans-serif;
-overflow-x:hidden;
+color:#fff;
+font-family:Arial,Helvetica,sans-serif;
 
 }
 
 
 a{
-
 text-decoration:none;
 color:inherit;
-
 }
-
-
-
-/* HEADER */
 
 
 header{
@@ -62,9 +46,9 @@ header{
 position:fixed;
 top:0;
 width:100%;
-z-index:1000;
+z-index:100;
 
-background:rgba(5,5,5,.65);
+background:rgba(5,5,5,.8);
 backdrop-filter:blur(15px);
 
 }
@@ -84,13 +68,10 @@ align-items:center;
 }
 
 
-
 .logo{
 
 font-size:32px;
 font-weight:bold;
-
-letter-spacing:2px;
 
 }
 
@@ -115,20 +96,16 @@ align-items:center;
 .menu a{
 
 color:#aaa;
-transition:.3s;
 
 }
 
 
 .menu a:hover{
 
-color:white;
+color:#fff;
 
 }
 
-
-
-/* LANGUAGE */
 
 
 .lang button{
@@ -147,10 +124,10 @@ cursor:pointer;
 }
 
 
-.lang button:hover,
 .lang button.active{
 
 background:#c8a96a;
+
 color:#000;
 
 }
@@ -159,17 +136,12 @@ color:#000;
 
 
 
-/* HERO */
-
-
 .hero{
 
 height:100vh;
 
 display:flex;
-
 align-items:center;
-
 justify-content:center;
 
 text-align:center;
@@ -177,6 +149,7 @@ text-align:center;
 padding:20px;
 
 }
+
 
 
 .hero-content{
@@ -226,9 +199,9 @@ color:#c8a96a;
 
 .hero p{
 
-max-width:650px;
-
 margin:35px auto;
+
+max-width:650px;
 
 color:#999;
 
@@ -237,7 +210,6 @@ font-size:18px;
 line-height:1.7;
 
 }
-
 
 
 
@@ -257,17 +229,8 @@ font-weight:bold;
 
 margin:10px;
 
-transition:.3s;
-
 }
 
-
-
-.btn:hover{
-
-transform:translateY(-5px);
-
-}
 
 
 .outline{
@@ -279,12 +242,6 @@ border:1px solid #444;
 color:white;
 
 }
-
-
-
-
-
-/* SECTION */
 
 
 section{
@@ -306,12 +263,7 @@ font-size:55px;
 margin-bottom:60px;
 
 }
-
-
-
-
-/* SERVICES */
-
+/* SERVICES + PROJECTS */
 
 .cards{
 
@@ -339,7 +291,6 @@ transition:.4s;
 }
 
 
-
 .card:hover{
 
 transform:translateY(-10px);
@@ -347,7 +298,6 @@ transform:translateY(-10px);
 border-color:#c8a96a;
 
 }
-
 
 
 .card h3{
@@ -368,53 +318,126 @@ line-height:1.6;
 }
 
 
+
+.projects{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:30px;
+
+}
+
+
+
+footer{
+
+text-align:center;
+
+padding:50px;
+
+color:#777;
+
+}
+
+
+
+@media(max-width:800px){
+
+.menu a{
+
+display:none;
+
+}
+
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+
+.projects{
+
+grid-template-columns:1fr;
+
+}
+
+
+section{
+
+padding:80px 20px;
+
+}
+
+
+h2{
+
+font-size:40px;
+
+}
+
+}
+
 </style>
 
 </head>
 
 
+
 <body>
+
 
 
 <header>
 
+
 <nav>
+
 
 <div class="logo">
 HM<span>.</span>
 </div>
 
 
+
 <div class="menu">
 
-<a href="#services">
+
+<a href="#services" id="navServices">
 Services
 </a>
 
 
-<a href="#projects">
+<a href="#projects" id="navProjects">
 Projects
 </a>
 
 
-<a href="#contact">
+<a href="#contact" id="navContact">
 Contact
 </a>
 
 
+
 <div class="lang">
 
-<button onclick="changeLang('en')" id="en">
+<button id="en" onclick="changeLanguage('en')">
 EN
 </button>
 
-<button onclick="changeLang('am')" id="am">
+
+<button id="am" onclick="changeLanguage('am')">
 AM
 </button>
 
-<button onclick="changeLang('ru')" id="ru">
+
+<button id="ru" onclick="changeLanguage('ru')">
 RU
 </button>
+
 
 </div>
 
@@ -424,7 +447,10 @@ RU
 
 </nav>
 
+
 </header>
+
+
 
 
 
@@ -434,12 +460,15 @@ RU
 <div class="hero-content">
 
 
-<div class="badge">
+<div class="badge" id="badge">
+
 Available for freelance projects
+
 </div>
 
 
-<h1 id="title">
+
+<h1 id="heroTitle">
 
 Premium Shopify
 <br>
@@ -451,7 +480,7 @@ Web Experiences
 
 
 
-<p id="description">
+<p id="heroText">
 
 I create modern Shopify stores and professional websites for brands worldwide.
 
@@ -459,13 +488,18 @@ I create modern Shopify stores and professional websites for brands worldwide.
 
 
 
-<a href="#projects" class="btn">
+<a href="#projects" class="btn" id="projectBtn">
+
 View Projects
+
 </a>
 
 
-<a href="#contact" class="btn outline">
+
+<a href="#contact" class="btn outline" id="contactBtn">
+
 Contact Me
+
 </a>
 
 
@@ -473,6 +507,9 @@ Contact Me
 
 
 </section>
+
+
+
 
 
 
@@ -481,123 +518,148 @@ Contact Me
 <section id="services">
 
 
-<h2>
+<h2 id="servicesTitle">
+
 Shopify Services
+
 </h2>
+
 
 
 <div class="cards">
 
 
+
 <div class="card">
 
-<h3>
+<h3 id="s1t">
 Shopify Store Development
 </h3>
 
-<p>
-Complete Shopify stores from zero: design, setup and customization.
+<p id="s1p">
+Complete Shopify stores from zero: setup, design and customization.
 </p>
 
 </div>
 
 
+
+
 <div class="card">
 
-<h3>
+<h3 id="s2t">
 Custom Liquid Development
 </h3>
 
-<p>
+<p id="s2p">
 Custom sections, animations and advanced Shopify features.
 </p>
 
 </div>
 
 
+
+
 <div class="card">
 
-<h3>
-Theme Customization
+<h3 id="s3t">
+Shopify Theme Customization
 </h3>
 
-<p>
-Premium Shopify theme modifications and branding.
+<p id="s3p">
+Premium theme customization and branding.
 </p>
 
 </div>
 
 
+
+
 <div class="card">
 
-<h3>
+<h3 id="s4t">
 Store Redesign
 </h3>
 
-<p>
+<p id="s4p">
 Upgrade old Shopify stores with modern UI.
 </p>
 
 </div>
 
 
+
+
 <div class="card">
 
-<h3>
+<h3 id="s5t">
 Speed Optimization
 </h3>
 
-<p>
+<p id="s5p">
 Improve performance and loading speed.
 </p>
 
 </div>
 
 
+
+
 <div class="card">
 
-<h3>
+<h3 id="s6t">
 GitHub Websites
 </h3>
 
-<p>
+<p id="s6p">
 Fast modern websites hosted with GitHub Pages.
 </p>
 
 </div>
 
 
+
 </div>
 
+
 </section>
-<!-- PROJECTS -->
+
+
+
+
 
 <section id="projects">
 
 
-<h2>
+<h2 id="projectsTitle">
+
 Featured Projects
+
 </h2>
 
 
 
-<div class="cards">
+<div class="projects">
 
 
 <div class="card">
 
+
 <h3>
+
 Luxury Fragrance Shopify Store
+
 </h3>
 
 
 <p>
-Premium Shopify ecommerce store with modern design and product experience.
+
+Premium Shopify ecommerce project.
+
 </p>
 
 
-<a 
-class="btn"
+<a class="btn"
 href="https://hovik-mkrtchyan.myshopify.com/"
 target="_blank">
 
@@ -611,21 +673,25 @@ Live Store →
 
 
 
+
 <div class="card">
 
+
 <h3>
+
 Men's Fragrance Website
+
 </h3>
 
 
 <p>
-Modern static website created with HTML, CSS and JavaScript.
+
+HTML, CSS and JavaScript website hosted on GitHub.
+
 </p>
 
 
-
-<a 
-class="btn"
+<a class="btn"
 href="https://specialfragrance.github.io/Menfragrnace/"
 target="_blank">
 
@@ -642,21 +708,14 @@ Live Website →
 
 
 </section>
-
-
-
-
-
 <!-- CONTACT -->
-
 
 <section id="contact">
 
 
-<h2>
+<h2 id="contactTitle">
 Let's Build Something Amazing
 </h2>
-
 
 
 <div class="card">
@@ -667,7 +726,7 @@ Hovik Mkrtchyan
 </h3>
 
 
-<p>
+<p id="contactText">
 
 Shopify Developer & Web Designer
 
@@ -682,21 +741,14 @@ hovmkrtchyan2@gmail.com
 </p>
 
 
-<br>
-
-
-<a 
-class="btn"
-href="mailto:hovmkrtchyan2@gmail.com">
+<a class="btn" href="mailto:hovmkrtchyan2@gmail.com" id="emailBtn">
 
 Contact Me
 
 </a>
 
 
-
 </div>
-
 
 
 </section>
@@ -704,21 +756,15 @@ Contact Me
 
 
 
-
-
-
 <footer>
 
-
-<p>
+<p id="footerText">
 
 © 2026 Hovik Mkrtchyan | Shopify Developer
 
 </p>
 
-
 </footer>
-
 
 
 
@@ -727,49 +773,188 @@ Contact Me
 <script>
 
 
-const translations = {
+const languages = {
 
 
 en:{
 
 
-title:
+navServices:"Services",
+navProjects:"Projects",
+navContact:"Contact",
+
+badge:"Available for freelance projects",
+
+heroTitle:
 `Premium Shopify<br><span>Web Experiences</span>`,
 
+heroText:
+"I create modern Shopify stores and professional websites for brands worldwide.",
 
-description:
-"I create modern Shopify stores and professional websites for brands worldwide."
+projectBtn:"View Projects",
+
+contactBtn:"Contact Me",
+
+servicesTitle:"Shopify Services",
+
+s1t:"Shopify Store Development",
+s1p:"Complete Shopify stores from zero: setup, design and customization.",
+
+s2t:"Custom Liquid Development",
+s2p:"Custom sections, animations and advanced Shopify features.",
+
+s3t:"Shopify Theme Customization",
+s3p:"Premium theme customization and branding.",
+
+s4t:"Store Redesign",
+s4p:"Upgrade old Shopify stores with modern UI.",
+
+s5t:"Speed Optimization",
+s5p:"Improve performance and loading speed.",
+
+s6t:"GitHub Websites",
+s6p:"Fast modern websites hosted with GitHub Pages.",
+
+projectsTitle:"Featured Projects",
+
+contactTitle:"Let's Build Something Amazing",
+
+emailBtn:"Contact Me",
+
+footerText:"© 2026 Hovik Mkrtchyan | Shopify Developer"
 
 },
+
 
 
 
 am:{
 
 
-title:
+navServices:"Ծառայություններ",
+
+navProjects:"Նախագծեր",
+
+navContact:"Կապ",
+
+
+badge:"Բաց եմ ֆրիլանս նախագծերի համար",
+
+
+heroTitle:
 `Պրեմիում Shopify<br><span>Վեբ լուծումներ</span>`,
 
 
-description:
-"Կառուցում եմ ժամանակակից Shopify խանութներ և պրոֆեսիոնալ կայքեր բիզնեսների համար։"
+heroText:
+"Կառուցում եմ ժամանակակից Shopify խանութներ և պրոֆեսիոնալ կայքեր բիզնեսների համար։",
+
+
+projectBtn:"Դիտել նախագծերը",
+
+contactBtn:"Կապ հաստատել",
+
+
+servicesTitle:"Shopify Ծառայություններ",
+
+
+s1t:"Shopify Խանութների Կառուցում",
+s1p:"Shopify խանութի ամբողջական ստեղծում՝ դիզայն, կարգավորում և անհատականացում։",
+
+s2t:"Custom Liquid Development",
+s2p:"Անհատական բաժիններ, անիմացիաներ և հատուկ Shopify ֆունկցիաներ։",
+
+s3t:"Shopify Theme Customization",
+s3p:"Թեմաների փոփոխում և բրենդային դիզայն։",
+
+s4t:"Խանութի Վերափոխում",
+s4p:"Հին Shopify կայքերի վերափոխում ժամանակակից տեսքով։",
+
+s5t:"Արագության Օպտիմիզացում",
+s5p:"Կայքի արագության և աշխատանքի բարելավում։",
+
+s6t:"GitHub Կայքեր",
+s6p:"Արագ և ժամանակակից կայքեր GitHub Pages-ում։",
+
+
+projectsTitle:"Իմ Նախագծերը",
+
+
+contactTitle:"Ստեղծենք Միասին Հզոր Կայք",
+
+
+emailBtn:"Գրել ինձ",
+
+
+footerText:"© 2026 Hovik Mkrtchyan | Shopify Developer"
+
 
 },
+
+
 
 
 
 ru:{
 
 
-title:
+navServices:"Услуги",
+
+navProjects:"Проекты",
+
+navContact:"Контакты",
+
+
+badge:"Открыт для фриланс проектов",
+
+
+heroTitle:
 `Премиальные Shopify<br><span>Веб решения</span>`,
 
 
-description:
-"Создаю современные Shopify магазины и сайты для бизнеса."
+heroText:
+"Создаю современные Shopify магазины и профессиональные сайты для бизнеса.",
+
+
+projectBtn:"Смотреть проекты",
+
+contactBtn:"Связаться",
+
+
+servicesTitle:"Shopify Услуги",
+
+
+s1t:"Создание Shopify магазина",
+s1p:"Полная разработка Shopify магазина с нуля.",
+
+s2t:"Custom Liquid Development",
+s2p:"Уникальные секции, анимации и функции Shopify.",
+
+s3t:"Настройка Shopify темы",
+s3p:"Изменение тем и фирменный дизайн.",
+
+s4t:"Редизайн магазина",
+s4p:"Обновление старых Shopify сайтов.",
+
+s5t:"Оптимизация скорости",
+s5p:"Улучшение скорости и производительности.",
+
+s6t:"GitHub сайты",
+s6p:"Современные сайты на GitHub Pages.",
+
+
+projectsTitle:"Мои Проекты",
+
+
+contactTitle:"Создадим Что-то Великолепное",
+
+
+emailBtn:"Написать мне",
+
+
+footerText:"© 2026 Hovik Mkrtchyan | Shopify Developer"
+
 
 }
-
 
 
 };
@@ -779,31 +964,32 @@ description:
 
 
 
-function changeLang(lang){
+function changeLanguage(lang){
 
 
-document
-.getElementById("title")
-.innerHTML =
-translations[lang].title;
+let t = languages[lang];
 
 
-
-document
-.getElementById("description")
-.innerHTML =
-translations[lang].description;
+Object.keys(t).forEach(key=>{
 
 
-
-localStorage.setItem(
-"language",
-lang
-);
+let element=document.getElementById(key);
 
 
+if(element){
 
-updateButton(lang);
+element.innerHTML=t[key];
+
+}
+
+
+});
+
+
+localStorage.setItem("language",lang);
+
+
+setActive(lang);
 
 
 }
@@ -811,12 +997,10 @@ updateButton(lang);
 
 
 
+function setActive(lang){
 
-function updateButton(lang){
 
-
-document
-.querySelectorAll(".lang button")
+document.querySelectorAll(".lang button")
 .forEach(btn=>{
 
 btn.classList.remove("active");
@@ -824,9 +1008,7 @@ btn.classList.remove("active");
 });
 
 
-
-document
-.getElementById(lang)
+document.getElementById(lang)
 .classList.add("active");
 
 
@@ -835,18 +1017,15 @@ document
 
 
 
-
-let savedLanguage =
+let saved =
 localStorage.getItem("language") || "en";
 
 
-
-changeLang(savedLanguage);
+changeLanguage(saved);
 
 
 
 </script>
-
 
 
 </body>
